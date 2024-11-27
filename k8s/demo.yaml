@@ -182,3 +182,58 @@ spec:
         ports:
         - containerPort: 10002
 ---
+##################################################################################################
+# api-gateway
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+    service: gateway
+spec:
+  ports:
+  - port: 10000
+    name: http
+  selector:
+    app: gateway
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-gateway
+  labels:
+    account: gateway
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway
+  labels:
+    app: gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway
+  template:
+    metadata:
+      labels:
+        app: gateway
+    spec:
+      serviceAccountName: demo-gateway
+      containers:
+      - name: gateway
+        image: kkk2099/kkk:gateway-1.0
+        imagePullPolicy: Always
+        env:
+        - name: JVM_MEM
+          value: "1G"
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
+        - name: SERVICE_A_URI
+          value: "http://service-a:10001"
+        ports:
+        - containerPort: 10000
+---
