@@ -1,0 +1,8 @@
+apiVersion: telemetry.istio.io/v1alpha1
+kind: Telemetry
+metadata:
+  name: mesh-telemetry
+  namespace: istio-system
+spec:
+  tracing:
+  - randomSamplingPercentage: 100.0  # 100% 的请求都生成追踪信息
