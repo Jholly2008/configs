@@ -25,6 +25,7 @@ kubectl get pod <pod-name> -o yaml
 kubectl get pods -l app=gateway -o wide
 curl http://10.244.2.9:10000/api/service-a/version
 这里会负载两个不同的service-a的版本v1和v2
+curl http://10.244.2.9:10000/api/service-a/trace
 
 定义版本：
 kubectl apply -f destination-rule-all.yaml
@@ -32,3 +33,8 @@ kubectl apply -f destination-rule-all.yaml
 kubectl apply -f virtual-service-all-v2.yaml
 再次测试：curl http://10.244.2.9:10000/api/service-a/version 都是路由到版本v2
 
+
+定义前端网关：
+kubectl apply -f frontend-gateway.yaml
+确认网关：
+kubectl get gateway

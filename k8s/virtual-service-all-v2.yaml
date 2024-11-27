@@ -61,3 +61,15 @@ spec:
         host: frontend-react
         subset: v2
 ---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway
+spec:
+  hosts:
+  - gateway
+  http:
+  - route:
+    - destination:
+        host: gateway
+---
