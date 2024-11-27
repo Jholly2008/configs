@@ -23,6 +23,12 @@ spec:
   gateways:
   - frontend-gateway
   http:
+  - match:
+    - uri:
+        prefix: "/api"
+    route:
+    - destination:
+        host: gateway
   - route:
     - destination:
         host: frontend-react
