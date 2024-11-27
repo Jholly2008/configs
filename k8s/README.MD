@@ -21,3 +21,14 @@ curl http://localhost:10002/api/cost
 查看POD的yaml文件（确认使用了istio-proxy）
 kubectl get pod <pod-name> -o yaml
 
+测试网关的pod
+kubectl get pods -l app=gateway -o wide
+curl http://10.244.2.9:10000/api/service-a/version
+这里会负载两个不同的service-a的版本v1和v2
+
+定义版本：
+kubectl apply -f destination-rule-all.yaml
+配置默认路由-路由到v2
+kubectl apply -f virtual-service-all-v2.yaml
+再次测试：curl http://10.244.2.9:10000/api/service-a/version 都是路由到版本v2
+
