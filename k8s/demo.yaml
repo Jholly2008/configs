@@ -143,6 +143,8 @@ spec:
         image: kkk2099/kkk:service-b-1.0
         imagePullPolicy: Always
         env:
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
         - name: APP_VERSION
           value: "v1"
         ports:
@@ -173,6 +175,8 @@ spec:
         image: kkk2099/kkk:service-b-1.0
         imagePullPolicy: Always
         env:
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
         - name: APP_VERSION
           value: "v2"
         ports:
