@@ -46,14 +46,14 @@ spec:
       - name: service-a
         image: kkk2099/kkk:service-a-1.0
         imagePullPolicy: Always
-		env:
+        env:
         - name: JVM_MEM
           value: "1G"
         - name: APP_VERSION
           value: "v1"
-		- name: APP_KUBERNETES_ENABLED
-		  value: true
-		- name: SERVICE_B_URI
+        - name: APP_KUBERNETES_ENABLED
+          value: true
+        - name: SERVICE_B_URI
           value: "http://service-b:10002"
         ports:
         - containerPort: 10001
@@ -87,9 +87,9 @@ spec:
           value: "1G"
         - name: APP_VERSION
           value: "v2"
-		- name: APP_KUBERNETES_ENABLED
-		  value: true
-		- name: SERVICE_B_URI
+        - name: APP_KUBERNETES_ENABLED
+          value: true
+        - name: SERVICE_B_URI
           value: "http://service-b:10002"
         ports:
         - containerPort: 10001
@@ -142,7 +142,7 @@ spec:
       - name: service-b
         image: kkk2099/kkk:service-b-1.0
         imagePullPolicy: Always
-		env:
+        env:
         - name: APP_VERSION
           value: "v1"
         ports:
