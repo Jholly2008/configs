@@ -6,6 +6,14 @@ spec:
   hosts:
   - service-a
   http:
+  - match:
+    - headers:
+        x-version-id:
+          exact: v1
+    route:
+    - destination:
+        host: service-a
+        subset: v1
   - route:
     - destination:
         host: service-a
@@ -19,8 +27,37 @@ spec:
   hosts:
   - service-b
   http:
+  - match:
+    - headers:
+        x-version-id:
+          exact: v1
+    route:
+    - destination:
+        host: service-b
+        subset: v1
   - route:
     - destination:
         host: service-b
+        subset: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: frontend-react
+spec:
+  hosts:
+  - frontend-react
+  http:
+  - match:
+    - headers:
+        x-version-id:
+          exact: v1
+    route:
+    - destination:
+        host: frontend-react
+        subset: v1
+  - route:
+    - destination:
+        host: frontend-react
         subset: v2
 ---
