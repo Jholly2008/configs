@@ -18,5 +18,6 @@ kubectl port-forward svc/service-b 10002:10002
 curl http://localhost:10002/api/cost
 
 
-
+查看POD的yaml文件（确认使用了istio-proxy）
+kubectl get pod <pod-name> -o yaml
 
