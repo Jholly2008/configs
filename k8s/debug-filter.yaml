@@ -14,16 +14,24 @@ spec:
       listener:
         filterChain:
           filter:
-            name: "envoy.filters.network.http_connection_manager"
+            name: envoy.filters.network.http_connection_manager
             subFilter:
-              name: "envoy.filters.http.router"  # 添加这个
+              name: envoy.filters.http.router
     patch:
-      operation: INSERT_BEFORE    # 改成 INSERT_BEFORE
+      operation: INSERT_BEFORE
       value:
         name: envoy.filters.http.lua
         typed_config:
-          "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          '@type': type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
           inlineCode: |
             function envoy_on_request(request_handle)
-              request_handle:logInfo("Hello from service-a filter")
+              request_handle:logInfo("----------------Start Request----------------")
+              request_handle:logInfo("Received request on service-b: " .. request_handle:headers():get(":path"))
+              request_handle:logInfo("-----------------End Request-----------------")
+            end
+            
+            function envoy_on_response(response_handle)
+              response_handle:logInfo("----------------Start Response----------------")
+              response_handle:logInfo("Sending response from service-b")
+              response_handle:logInfo("-----------------End Response-----------------")
             end
