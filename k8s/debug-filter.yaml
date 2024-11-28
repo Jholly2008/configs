@@ -10,7 +10,7 @@ spec:
   configPatches:
   - applyTo: HTTP_FILTER
     match:
-      context: SIDECAR_INBOUND
+      context: ANY
       listener:
         filterChain:
           filter:
@@ -23,12 +23,12 @@ spec:
           "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
           inlineCode: |
             function envoy_on_request(request_handle)
+              request_handle:logInfo("====== Begin Headers ======")
               local headers = request_handle:headers()
-              local headers_str = ""
               for key, value in pairs(headers:get_headers()) do
-                headers_str = headers_str .. "\n" .. key .. ": " .. value
+                request_handle:logInfo(string.format("[Header] %s: %s", key, value))
               end
-              request_handle:logInfo("service-a received headers:" .. headers_str)
+              request_handle:logInfo("====== End Headers ======")
             end
 ---
 apiVersion: networking.istio.io/v1alpha3

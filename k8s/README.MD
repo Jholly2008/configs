@@ -52,7 +52,19 @@ default命名空间配置istio特性（1. 自定义请求头传播）（还没�
 kubectl apply -f default-namespace-config.yaml
 
 
+debug问题
+kubectl apply -f debug-filter.yaml
+
+
 
 命令：
--- 查看proxy日志
-kubectl logs -l app=service-a -c istio-proxy
+-- 查看指定pod的proxy日志
+kubectl logs -l app=service-a -c istio-proxy -f --tail=100
+
+-- 设置proxy的日志级别，默认info
+istioctl proxy-config log deployment/service-a-v1 --level info
+istioctl proxy-config log deployment/service-a-v2 --level info
+istioctl proxy-config log deployment/service-b-v1 --level info
+istioctl proxy-config log deployment/service-b-v2 --level info
+
+
