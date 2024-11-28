@@ -50,8 +50,8 @@ spec:
   http:
   - match:
     - headers:
-        x-frontend-version:
-          exact: v1
+        cookie:
+          regex: ".*frontend-version=v1.*"
     route:
     - destination:
         host: frontend-react
