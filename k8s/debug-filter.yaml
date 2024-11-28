@@ -1,12 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
-  name: debug-headers-service-a
+  name: debug-headers-service-b
   namespace: default
 spec:
   workloadSelector:
     labels:
-      app: service-a
+      app: service-b
   configPatches:
   - applyTo: HTTP_FILTER
     match:
