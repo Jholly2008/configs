@@ -6,7 +6,6 @@ metadata:
     proxy.istio.io/config: |
       proxyMetadata: {}
       proxyHeaders:
-        forwarded: true
         requestHeaders:
-          set:
-          - x-api-version
+          x-api-version: {}  # 明确启用这个头
+        forwarded: true
