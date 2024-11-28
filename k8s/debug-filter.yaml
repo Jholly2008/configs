@@ -1,0 +1,66 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: debug-headers-service-a
+  namespace: default
+spec:
+  workloadSelector:
+    labels:
+      app: service-a
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_INBOUND
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.filters.network.http_connection_manager"
+    patch:
+      operation: ADD
+      value:
+        name: envoy.filters.http.lua
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              local headers = request_handle:headers()
+              local headers_str = ""
+              for key, value in pairs(headers:get_headers()) do
+                headers_str = headers_str .. "\n" .. key .. ": " .. value
+              end
+              request_handle:logInfo("service-a received headers:" .. headers_str)
+            end
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: debug-headers-service-b
+  namespace: default
+spec:
+  workloadSelector:
+    labels:
+      app: service-b
+  configPatches:
+  - applyTo: HTTP_FILTER
+    match:
+      context: SIDECAR_INBOUND
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.filters.network.http_connection_manager"
+    patch:
+      operation: ADD
+      value:
+        name: envoy.filters.http.lua
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
+          inlineCode: |
+            function envoy_on_request(request_handle)
+              local headers = request_handle:headers()
+              local headers_str = ""
+              for key, value in pairs(headers:get_headers()) do
+                headers_str = headers_str .. "\n" .. key .. ": " .. value
+              end
+              request_handle:logInfo("service-b received headers:" .. headers_str)
+            end
+---

@@ -43,5 +43,16 @@ kubectl get gateway
 kubectl rollout restart deployment/gateway
 kubectl rollout restart deployment/service-a-v1
 kubectl rollout restart deployment/service-a-v2
+kubectl rollout restart deployment/service-b-v1
+kubectl rollout restart deployment/service-b-v2
 kubectl rollout restart deployment/frontend-react-v1
 kubectl rollout restart deployment/frontend-react-v2
+
+default命名空间配置istio特性（1. 自定义请求头传播）（还没验证，暂时全局配置了）
+kubectl apply -f default-namespace-config.yaml
+
+
+
+命令：
+-- 查看proxy日志
+kubectl logs -l app=service-a -c istio-proxy
