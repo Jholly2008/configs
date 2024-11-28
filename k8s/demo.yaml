@@ -57,6 +57,9 @@ spec:
           value: "http://service-b:10002"
         ports:
         - containerPort: 10001
+        resources:
+          requests:
+            memory: "1.5Gi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -93,6 +96,9 @@ spec:
           value: "http://service-b:10002"
         ports:
         - containerPort: 10001
+        resources:
+          requests:
+            memory: "1.5Gi"
 ---
 ##################################################################################################
 # service-b
