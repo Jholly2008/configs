@@ -38,3 +38,9 @@ kubectl apply -f virtual-service-all-v2.yaml
 kubectl apply -f frontend-gateway.yaml
 确认网关：
 kubectl get gateway
+
+重新更新(由于已经设置了 imagePullPolicy: Always，重启时会自动拉取最新镜像)：
+kubectl rollout restart deployment/service-a-v1
+kubectl rollout restart deployment/service-a-v2
+kubectl rollout restart deployment/frontend-react-v1
+kubectl rollout restart deployment/frontend-react-v2
