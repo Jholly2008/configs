@@ -51,7 +51,7 @@ spec:
   - match:
     - headers:
         cookie:
-          regex: ".*frontend-version=v1.*"
+          regex: ".*x-frontend-version=v1.*"
     route:
     - destination:
         host: frontend-react
