@@ -8,7 +8,7 @@ spec:
   http:
   - match:
     - headers:
-        x-version-id:
+        x-api-version:
           exact: v1
     route:
     - destination:
@@ -29,7 +29,7 @@ spec:
   http:
   - match:
     - headers:
-        x-version-id:
+        x-api-version:
           exact: v1
     route:
     - destination:
@@ -50,7 +50,7 @@ spec:
   http:
   - match:
     - headers:
-        x-version-id:
+        x-frontend-version:
           exact: v1
     route:
     - destination:
