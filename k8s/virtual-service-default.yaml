@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: namespace-headers
+  namespace: default
+spec:
+  hosts:
+  - "*"
+  http:
+  - route:
+    - destination:
+        host: "*"
+    headers:
+      request:
+        add:
+          x-api-version: "%REQ(x-api-version)%"
