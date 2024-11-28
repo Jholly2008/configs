@@ -15,8 +15,10 @@ spec:
         filterChain:
           filter:
             name: "envoy.filters.network.http_connection_manager"
+            subFilter:
+              name: "envoy.filters.http.router"  # 添加这个
     patch:
-      operation: ADD
+      operation: INSERT_BEFORE    # 改成 INSERT_BEFORE
       value:
         name: envoy.filters.http.lua
         typed_config:
