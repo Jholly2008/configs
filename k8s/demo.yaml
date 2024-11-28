@@ -236,6 +236,9 @@ spec:
           value: "http://service-a:10001"
         ports:
         - containerPort: 10000
+        resources:
+          requests:
+            memory: "1.5Gi"
 ---
 ##################################################################################################
 # frontend-react
