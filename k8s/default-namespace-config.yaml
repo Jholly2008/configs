@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: default
+  annotations:
+    proxy.istio.io/config: |
+      proxyMetadata: {}
+      proxyHeaders:
+        forwarded: true
+        requestHeaders:
+          set:
+          - x-api-version
