@@ -42,7 +42,7 @@ spec:
     headers:
       request:
         add:
-          x-api-version: "v2"
+          x-api-version: "%DYNAMIC_METADATA(envoy.lb:x_api_version)%"
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
