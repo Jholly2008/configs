@@ -15,20 +15,20 @@ spec:
       patch:
         operation: MERGE
         value:
-          name: envoy.extensions.filters.http.header_to_metadata  # 改成这个完整的名称
+          name: envoy.filters.http.header_to_metadata
           typed_config:
-            "@type": type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config
+            "@type": "type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config"  # 添加引号
             request_rules:
-              - header: x-api-version
+              - header: "x-api-version"        # 添加引号
                 on_header_present:
-                  metadata_namespace: envoy.lb
-                  key: version
-                  type: STRING
+                  metadata_namespace: "envoy.lb"  # 添加引号
+                  key: "version"                # 添加引号
+                  type: "STRING"                # 添加引号
                 on_header_missing:
-                  metadata_namespace: envoy.lb
-                  key: version
-                  value: "default"
-                  type: STRING
+                  metadata_namespace: "envoy.lb"  # 添加引号
+                  key: "version"                # 添加引号
+                  value: "default"              # 已有引号
+                  type: "STRING"                # 添加引号
                 remove: false
 ---
 apiVersion: networking.istio.io/v1alpha3
