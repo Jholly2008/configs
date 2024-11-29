@@ -12,12 +12,14 @@ spec:
           filterChain:
             filter:
               name: envoy.filters.network.http_connection_manager
+              subFilter:
+                name: envoy.filters.http.router
       patch:
         operation: MERGE
         value:
           name: envoy.filters.http.header_to_metadata
           typed_config:
-            "@type": "type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config"
+            "@type": type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config
             request_rules:
               - header: cookie
                 on_header_present:
