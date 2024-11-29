@@ -39,6 +39,10 @@ spec:
     - destination:
         host: service-b
         subset: v2
+    headers:
+      request:
+        add:
+          x-api-version: "v2"
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
