@@ -1,0 +1,53 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: header-propagation-filter
+  namespace: istio-system
+spec:
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: SIDECAR_OUTBOUND
+        listener:
+          filterChain:
+            filter:
+              name: envoy.filters.network.http_connection_manager
+      patch:
+        operation: MERGE
+        value:
+          name: envoy.filters.http.header_to_metadata
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config
+            request_rules:
+              - header: x-api-version
+                on_header_present:
+                  metadata_namespace: envoy.lb
+                  key: x-api-version
+                  type: STRING
+                remove: false
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: propagate-headers
+spec:
+  host: "*.default.svc.cluster.local"  # 应用到 default 命名空间的所有服务
+  trafficPolicy:
+    outlierDetection:
+      consecutive5xxErrors: 3
+    connectionPool:
+      http:
+        useClientProtocol: true  # 确保 header 传递
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: header-propagation
+spec:
+  hosts:
+  - "*"  # 适用于所有服务
+  http:
+  - headers:
+      request:
+        set:
+          x-custom-header: "%DOWNSTREAM_METADATA(envoy.lb:custom-header)%"

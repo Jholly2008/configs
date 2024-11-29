@@ -67,4 +67,7 @@ istioctl proxy-config log deployment/service-a-v2 --level info
 istioctl proxy-config log deployment/service-b-v1 --level info
 istioctl proxy-config log deployment/service-b-v2 --level info
 
-
+-- 传播，没成功！！！
+编辑
+kubectl edit configmap istio -n istio-system
+kubectl apply -f default-namespace-config.yaml
