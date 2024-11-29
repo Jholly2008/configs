@@ -12,4 +12,4 @@ spec:
     headers:
       request:
         add:
-          x-api-version: '"%METADATA([envoy.lb]x_api_version)%"'  # 在 metadata 引用外加上引号
+          x-api-version: "111111"  # 使用 metadata 的值
