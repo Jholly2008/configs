@@ -7,7 +7,7 @@ curl http://<pod-xxx-ip>:10002/api/cost
 测试service-a的pod
 kubectl get pods -l app=service-a -o wide
 curl http://<pod-xxx-ip>:10001/service-a/version
-
+curl http://service-a-v1-9cb9fb84f-sqf8g:10001/service-a/version
 
 测试service-a的svc
 kubectl port-forward svc/service-a 10001:10001
