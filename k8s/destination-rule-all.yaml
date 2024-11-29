@@ -8,6 +8,15 @@ spec:
   - name: v1
     labels:
       version: v1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 1      # 最大并发连接数为1
+      outlierDetection:
+        consecutive5xxErrors: 1   # 连续出现1次5xx错误就触发熔断
+        interval: 1s             # 检测间隔1秒
+        baseEjectionTime: 10s    # 熔断持续10秒
+        maxEjectionPercent: 100  # 可以熔断所有实例
   - name: v2
     labels:
       version: v2

@@ -73,8 +73,10 @@ kubectl exec -it productpage-v1-dffc47f64-x5wd6 -c istio-proxy -n default  -- pi
 
 -- 传播，没成功！！！
 编辑
-kubectl edit configmap istio -n istio-system
-kubectl apply -f default-namespace-config.yaml
+kubectl edit configmap istio -n istio-system	失败	无法基于全局配置设置自定义传播
+kubectl apply -f default-namespace-config.yaml	失败	无法基于请求头设置自定义传播
+kubectl appli -f virtual-service-all-v2.yaml	失败	基于x-api-version: "%DYNAMIC_METADATA(envoy.lb:x_api_version)%"取不到值，应该是出入站独立上下文的原因
+kubectl appli -f debug-filter.yaml	失败	无法基于envoy.lua设置请求头传播，原因同上
 
 
 istioctl proxy-config log service-a --level debug
