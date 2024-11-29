@@ -15,19 +15,15 @@ spec:
       patch:
         operation: MERGE
         value:
+          name: envoy.filters.http.header_to_metadata
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config"
             request_rules:
-              - header: "x-version"
+              - header: cookie
                 on_header_present:
-                  metadata_namespace: "envoy.lb"
-                  key: "version"
-                  type: "STRING"
-                on_header_missing:
-                  metadata_namespace: "envoy.lb"
-                  key: "version"
-                  value: "default"
-                  type: "STRING"
+                  metadata_namespace: envoy.lb
+                  key: session_id
+                  type: STRING
                 remove: false
 ---
 apiVersion: networking.istio.io/v1alpha3
