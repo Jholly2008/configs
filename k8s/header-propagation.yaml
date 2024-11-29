@@ -31,13 +31,13 @@ kind: DestinationRule
 metadata:
   name: propagate-headers
 spec:
-  host: "*.default.svc.cluster.local"  # 应用到 default 命名空间的所有服务
+  host: "*.default.svc.cluster.local"
   trafficPolicy:
     outlierDetection:
       consecutive5xxErrors: 3
     connectionPool:
       http:
-        useClientProtocol: true  # 确保 header 传递
+        useClientProtocol: true
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -45,9 +45,12 @@ metadata:
   name: header-propagation
 spec:
   hosts:
-  - "*"  # 适用于所有服务
+  - "*"
   http:
-  - headers:
+  - route:
+    - destination:
+        host: "*"     # 保持原始目标主机
+    headers:
       request:
         set:
-          x-custom-header: "%DOWNSTREAM_METADATA(envoy.lb:custom-header)%"
+          x-api-version: "%DOWNSTREAM_METADATA(envoy.lb:x-api-version)%"
