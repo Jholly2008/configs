@@ -141,6 +141,7 @@ spec:
                       upstream_transport_failure_reason: "%UPSTREAM_TRANSPORT_FAILURE_REASON%"
                       request_headers: "%DYNAMIC_METADATA(envoy.lua:request_headers)%"
                       response_headers: "%DYNAMIC_METADATA(envoy.lua:response_headers)%"
+                      x_api_version: "%DYNAMIC_METADATA(envoy.lua:x_api_version)%"
     - applyTo: HTTP_FILTER
       match:
         context: ANY
@@ -165,6 +166,7 @@ spec:
                   headers_map[key] = value
                 end
                 request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "request_headers", headers_map)
+                request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version", "1234567890")
               end
               function envoy_on_response(response_handle)
                 local headers = response_handle:headers()
