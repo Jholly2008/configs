@@ -142,7 +142,7 @@ spec:
                       request_headers: "%DYNAMIC_METADATA(envoy.lua:request_headers)%"
                       response_headers: "%DYNAMIC_METADATA(envoy.lua:response_headers)%"
                       x_api_version_dd: "%DYNAMIC_METADATA(envoy.lua:x_api_version_dd)%"
-                      x_api_version: %DYNAMIC_METADATA(envoy.lb:x-api-version)%
+                      x_api_version: "%DYNAMIC_METADATA(envoy.lb:x-api-version)%"
     - applyTo: HTTP_FILTER
       match:
         context: ANY
