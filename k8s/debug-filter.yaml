@@ -69,6 +69,7 @@ spec:
             "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
             inlineCode: |
               function envoy_on_request(request_handle)
+                request_handle:logInfo("=================== LUA FILTER EXECUTED DEBUG===================")
                 local headers = request_handle:headers()
                 local headers_map = {}
                 for key, value in pairs(headers) do
@@ -157,6 +158,7 @@ spec:
             "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
             inlineCode: |
               function envoy_on_request(request_handle)
+                request_handle:logInfo("=================== LUA FILTER EXECUTED DEBUG===================")
                 local headers = request_handle:headers()
                 local headers_map = {}
                 for key, value in pairs(headers) do
