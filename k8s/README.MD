@@ -80,3 +80,7 @@ kubectl appli -f debug-filter.yaml	失败	无法基于envoy.lua设置请求头�
 
 
 istioctl proxy-config log service-a --level debug
+
+-- 测试并发
+hey -n 20 -c 2 http://localhost:10000/api/service-a/version
+--- 测试熔断。

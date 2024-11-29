@@ -14,6 +14,11 @@ spec:
     - destination:
         host: service-a
         subset: v1
+  - fault:
+      delay:
+        percentage:
+          value: 100.0    # 100%的请求都会被延迟
+        fixedDelay: 7s    # 固定延迟7秒
   - route:
     - destination:
         host: service-a

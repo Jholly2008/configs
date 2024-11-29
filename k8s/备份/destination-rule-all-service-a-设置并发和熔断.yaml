@@ -1,0 +1,75 @@
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: service-a
+spec:
+  host: service-a
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 1        # TCP连接数限制为1
+        http:
+          http1MaxPendingRequests: 1  # HTTP1.1等待队列最大请求数
+          maxRequestsPerConnection: 1  # 每个连接允许的最大请求数
+          http2MaxRequests: 1         # HTTP2最大请求数
+      outlierDetection:
+        consecutive5xxErrors: 1     
+        interval: 1s             
+        baseEjectionTime: 10s    
+        maxEjectionPercent: 100  
+  - name: v2
+    labels:
+      version: v2
+    trafficPolicy:
+      connectionPool:
+        tcp:
+          maxConnections: 1
+        http:
+          http1MaxPendingRequests: 1
+          maxRequestsPerConnection: 1
+          http2MaxRequests: 1
+      outlierDetection:
+        consecutive5xxErrors: 1
+        interval: 1s
+        baseEjectionTime: 10s
+        maxEjectionPercent: 100
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: service-b
+spec:
+  host: service-b
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: frontend-react
+spec:
+  host: frontend-react
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: gateway
+spec:
+  host: gateway
+---
