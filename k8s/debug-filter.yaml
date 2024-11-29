@@ -164,9 +164,9 @@ spec:
                 local headers = request_handle:headers()
                
                 -- 如果请求头有 x-api-version，保存到 metadata
-                local header_version = headers:get("x-api-version")
+                local header_version = headers:get("x-api-version") or "default"
                 if header_version then
-                  request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version", header_version)
+                  request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version", header_version .. "vvv")
                 end
                 
                 -- 如果 metadata 中有 x_api_version，添加到请求头
@@ -183,7 +183,7 @@ spec:
                   headers_map[key] = value
                 end
                 request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "request_headers", headers_map)
-                request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version_dd", "1234567899")
+                request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version_dd", "12345678991")
                 -- 调用 x-api-version 传播函数
                 propagate_api_version(request_handle)
               end
