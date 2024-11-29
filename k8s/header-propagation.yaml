@@ -27,11 +27,11 @@ spec:
               - header: x-api-version
                 on_header_present:
                   metadata_namespace: envoy.lb
-                  key: x-api-version
+                  key: api_version
                   type: STRING
                 on_header_missing:
                   metadata_namespace: envoy.lb
-                  key: x-api-version
+                  key: api_version
                   value: default
                   type: STRING
                 remove: false
