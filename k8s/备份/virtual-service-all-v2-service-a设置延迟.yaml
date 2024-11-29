@@ -1,0 +1,85 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: service-a
+spec:
+  hosts:
+  - service-a
+  http:
+  - match:
+    - headers:
+        x-api-version:
+          exact: v1
+    route:
+    - destination:
+        host: service-a
+        subset: v1
+  - route:
+    - destination:
+        host: service-a
+        subset: v2
+    fault:
+      delay:
+        percentage:
+          value: 100.0    # 100%的请求都会被延迟
+        fixedDelay: 7s    # 固定延迟7秒
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: service-b
+spec:
+  hosts:
+  - service-b
+  http:
+  - match:
+    - headers:
+        x-api-version:
+          exact: v1
+    route:
+    - destination:
+        host: service-b
+        subset: v1
+  - route:
+    - destination:
+        host: service-b
+        subset: v2
+    headers:
+      request:
+        add:
+          x-api-version: "%DYNAMIC_METADATA(envoy.lb:x_api_version)%"
+          x-api-version-test: "test-value"
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: frontend-react
+spec:
+  hosts:
+  - frontend-react
+  http:
+  - match:
+    - headers:
+        cookie:
+          regex: ".*x-frontend-version=v1.*"
+    route:
+    - destination:
+        host: frontend-react
+        subset: v1
+  - route:
+    - destination:
+        host: frontend-react
+        subset: v2
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway
+spec:
+  hosts:
+  - gateway
+  http:
+  - route:
+    - destination:
+        host: gateway
+---
