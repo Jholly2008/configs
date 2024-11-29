@@ -21,10 +21,15 @@ spec:
           typed_config:
             "@type": type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config
             request_rules:
-              - header: cookie
+              - header: x-api-version
                 on_header_present:
                   metadata_namespace: envoy.lb
-                  key: session_id
+                  key: x-api-version
+                  type: STRING
+                on_header_missing:
+                  metadata_namespace: envoy.lb
+                  key: x-api-version
+                  value: default
                   type: STRING
                 remove: false
 ---
