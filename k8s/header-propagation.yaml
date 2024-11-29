@@ -10,7 +10,7 @@ spec:
   configPatches:
     - applyTo: HTTP_FILTER
       match:
-        context: SIDECAR_OUTBOUND
+        context: ANY
         listener:
           filterChain:
             filter:
@@ -38,7 +38,7 @@ spec:
     # 添加 Lua filter 来处理 header 传递
     - applyTo: HTTP_FILTER
       match:
-        context: SIDECAR_OUTBOUND
+        context: ANY
         listener:
           filterChain:
             filter:
