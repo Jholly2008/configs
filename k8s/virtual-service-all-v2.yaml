@@ -43,6 +43,9 @@ spec:
       request:
         add:
           x-api-version: "%DYNAMIC_METADATA(envoy.lb:x_api_version)%"
+          x-api-version-test1: "%METADATA([envoy.lb]x_api_version)%"
+          x-api-version-test2: "%METADATA(envoy.lb:x_api_version)%"
+          x-api-version-test: "test-value"
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
