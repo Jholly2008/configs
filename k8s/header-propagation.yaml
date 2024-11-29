@@ -15,14 +15,19 @@ spec:
       patch:
         operation: MERGE
         value:
-          name: envoy.filters.http.header_to_metadata
+          name: envoy.filters.http.header_to_metadata    # 这里改回原来的名字
           typed_config:
             "@type": type.googleapis.com/envoy.extensions.filters.http.header_to_metadata.v3.Config
             request_rules:
               - header: x-api-version
                 on_header_present:
                   metadata_namespace: envoy.lb
-                  key: x-api-version
+                  key: version
+                  type: STRING
+                on_header_missing:    # 添加了缺失 header 时的处理
+                  metadata_namespace: envoy.lb
+                  key: version
+                  value: "default"    # 设置默认值
                   type: STRING
                 remove: false
 ---
