@@ -142,7 +142,7 @@ spec:
                       request_headers: "%DYNAMIC_METADATA(envoy.lua:request_headers)%"
                       response_headers: "%DYNAMIC_METADATA(envoy.lua:response_headers)%"
                       x_api_version_dd: "%DYNAMIC_METADATA(envoy.lua:x_api_version_dd)%"
-                      x_api_version: "%DYNAMIC_METADATA(envoy.lb:api_version)%"
+                      x_api_version: "%DYNAMIC_METADATA(envoy.lb:x_api_version)%"
     - applyTo: HTTP_FILTER
       match:
         context: ANY
@@ -159,6 +159,22 @@ spec:
           typed_config:
             "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
             inlineCode: |
+              -- 专门处理 x-api-version 传播的函数
+              function propagate_api_version(request_handle)
+                local headers = request_handle:headers()
+               
+                -- 如果请求头有 x-api-version，保存到 metadata
+                local header_version = headers:get("x-api-version")
+                if header_version then
+                  request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version", header_version)
+                end
+                
+                -- 如果 metadata 中有 x_api_version，添加到请求头
+                local metadata = request_handle:streamInfo():dynamicMetadata():get("envoy.lua")
+                if metadata and metadata["x_api_version"] then
+                  headers:add("x-api-version", metadata["x_api_version"])
+                end
+              end
               function envoy_on_request(request_handle)
                 request_handle:logInfo("=================== LUA FILTER EXECUTED DEBUG===================")
                 local headers = request_handle:headers()
@@ -167,7 +183,9 @@ spec:
                   headers_map[key] = value
                 end
                 request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "request_headers", headers_map)
-                request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version_dd", "1234567890")
+                request_handle:streamInfo():dynamicMetadata():set("envoy.lua", "x_api_version_dd", "1234567899")
+                -- 调用 x-api-version 传播函数
+                propagate_api_version(request_handle)
               end
               function envoy_on_response(response_handle)
                 local headers = response_handle:headers()
