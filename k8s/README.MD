@@ -75,3 +75,6 @@ kubectl exec -it productpage-v1-dffc47f64-x5wd6 -c istio-proxy -n default  -- pi
 编辑
 kubectl edit configmap istio -n istio-system
 kubectl apply -f default-namespace-config.yaml
+
+
+istioctl proxy-config log service-a --level debug
