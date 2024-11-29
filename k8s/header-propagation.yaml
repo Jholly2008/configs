@@ -2,8 +2,11 @@ apiVersion: networking.istio.io/v1alpha3
 kind: EnvoyFilter
 metadata:
   name: header-propagation-filter
-  namespace: istio-system
+  namespace: default
 spec:
+  workloadSelector:
+    labels:
+      app: service-a
   configPatches:
     - applyTo: HTTP_FILTER
       match:
