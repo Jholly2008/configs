@@ -50,11 +50,15 @@ spec:
             "@type": type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua
             inlineCode: |
               function envoy_on_request(request_handle)
+                request_handle:logInfo("=================== LUA FILTER EXECUTED ===================")
                 local metadata = request_handle:streamInfo():dynamicMetadata():get("envoy.lb")
+                request_handle:logInfo("=================== METADATA: " .. tostring(metadata) .. " ===================")
                 if metadata then
                   local version = metadata["x-api-version"]
+                  request_handle:logInfo("=================== VERSION: " .. tostring(version) .. " ===================")
                   if version then
                     request_handle:headers():add("x-api-version", version)
+                    request_handle:logInfo("=================== HEADER ADDED ===================")
                   end
                 end
               end
