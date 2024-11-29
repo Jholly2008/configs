@@ -18,6 +18,7 @@ spec:
     - destination:
         host: service-a
         subset: v2
+    timeout: 0.5s
     fault:
       delay:
         percentage:
