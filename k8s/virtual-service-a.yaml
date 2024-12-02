@@ -9,7 +9,7 @@ spec:
   - match:
     - headers:
         Baggage:
-          exact: ".*x-api-version=v1.*"
+          exact: "one-key=one-value,two-key=two-value,x-api-version=v1"
     route:
     - destination:
         host: service-a
