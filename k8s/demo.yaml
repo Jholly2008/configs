@@ -55,6 +55,10 @@ spec:
           value: "true"
         - name: SERVICE_B_URI
           value: "http://service-b:10002"
+        - name: JAVA_TOOL_OPTIONS
+          value: "-javaagent:./agent/opentelemetry-javaagent.jar"
+        - name: OTEL_SERVICE_NAME
+          value: "service-a"
         ports:
         - containerPort: 10001
         resources:
@@ -94,6 +98,10 @@ spec:
           value: "true"
         - name: SERVICE_B_URI
           value: "http://service-b:10002"
+        - name: JAVA_TOOL_OPTIONS
+          value: "-javaagent:./agent/opentelemetry-javaagent.jar"
+        - name: OTEL_SERVICE_NAME
+          value: "service-a"
         ports:
         - containerPort: 10001
         resources:
@@ -240,6 +248,10 @@ spec:
           value: "true"
         - name: SERVICE_A_URI
           value: "http://service-a:10001"
+        - name: JAVA_TOOL_OPTIONS
+          value: "-javaagent:./agent/opentelemetry-javaagent.jar"
+        - name: OTEL_SERVICE_NAME
+          value: "gateway"
         ports:
         - containerPort: 10000
         resources:
