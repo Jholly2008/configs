@@ -9,7 +9,7 @@ spec:
   - match:
     - headers:
         baggage:
-          exact: "x-api-version=v1"
+          exact: ".*x-api-version=v1.*"
     route:
     - destination:
         host: service-a
