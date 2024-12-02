@@ -1,24 +1,3 @@
-apiVersion: networking.istio.io/v1
-kind: VirtualService
-metadata:
-  name: service-a
-spec:
-  hosts:
-  - service-a
-  http:
-  - match:
-    - headers:
-        x-api-version:
-          exact: v1
-    route:
-    - destination:
-        host: service-a
-        subset: v1
-  - route:
-    - destination:
-        host: service-a
-        subset: v2
-    timeout: 0.5s
 ---
 apiVersion: networking.istio.io/v1
 kind: VirtualService
