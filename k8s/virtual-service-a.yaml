@@ -8,8 +8,8 @@ spec:
   http:
   - match:
     - headers:
-        Baggage:
-          exact: "one-key=one-value,two-key=two-value,x-api-version=v1"
+        baggage:
+          regex: ".*x-api-version=v1.*"
     route:
     - destination:
         host: service-a
