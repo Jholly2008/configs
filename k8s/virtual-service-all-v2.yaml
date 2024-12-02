@@ -19,11 +19,6 @@ spec:
         host: service-a
         subset: v2
     timeout: 0.5s
-    fault:
-      delay:
-        percentage:
-          value: 100.0    # 100%的请求都会被延迟
-        fixedDelay: 7s    # 固定延迟7秒
 ---
 apiVersion: networking.istio.io/v1
 kind: VirtualService
