@@ -67,6 +67,8 @@ istioctl proxy-config log deployment/service-a-v2 --level info
 istioctl proxy-config log deployment/service-b-v1 --level info
 istioctl proxy-config log deployment/service-b-v2 --level info
 
+-- 查看MeshConfig配置
+kubectl get configmap istio -n istio-system -o yaml
 
 kubectl exec -it productpage-v1-dffc47f64-x5wd6 -c istio-proxy -n default  -- pilot-agent request GET server_info --log_as_json | jq {version}
 
