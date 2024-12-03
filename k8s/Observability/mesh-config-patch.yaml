@@ -2,8 +2,15 @@ apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 spec:
   meshConfig:
+    enableTracing: true
     extensionProviders:
-    - name: otel
+    - name: otel-tracing
+      opentelemetry:
+        port: 4317
+        service: opentelemetry-collector.observability.svc.cluster.local
+        resource_detectors:
+          environment: {}
+    - name: otel-als
       envoyOtelAls:
         service: opentelemetry-collector.observability.svc.cluster.local
         port: 4317
