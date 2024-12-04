@@ -19,7 +19,9 @@ spec:
               value: downstream_peer.labels['app'].value
       providers:
         - name: prometheus
-
+  selector:
+    matchLabels:
+      app: service-a
 
 
 ---
@@ -39,11 +41,6 @@ spec:
           istio_operationId:
             value: | 
               request.url_path.matches("/api/v1/[[:alnum:]]*/keys/[[:alnum:]]*/import") ? "/api/v1/{cusID}/keys/{keyName}/import" :
-              request.url_path.matches("/api/v1/[[:alnum:]]*/keys/[[:alnum:]]*/revolve") ? "/api/v1/{cusID}/keys/{keyName}/revolve" :
-              request.url_path.matches("/api/v1/[[:alnum:]]*/encode") ? "/api/v1/{cusID}/encode" :
-              request.url_path.matches("/api/v1/[[:alnum:]]*/decode") ? "/api/v1/{cusID}/decode" :
-              request.url_path.matches("/ready") ? "probes" :
-              request.url_path.matches("/live") ? "probes" :
               "unknown"
       providers:
         - name: prometheus
