@@ -1,3 +1,5 @@
+```mermaid
+
 flowchart LR
     client[("前端客户端\n(Browser/App)")]
     istio[["Istio Gateway\n(istio-system)"]]
@@ -60,3 +62,5 @@ flowchart LR
     style gw-b fill:#ffb,stroke:#333,stroke-width:2px
     style gw-c fill:#ffb,stroke:#333,stroke-width:2px
     style Service Mesh fill:#f5f5f5,stroke:#666,stroke-width:2px
+
+```
