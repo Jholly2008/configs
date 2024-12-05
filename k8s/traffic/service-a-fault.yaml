@@ -1,3 +1,4 @@
+# 故障注入-超时 service-a
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
