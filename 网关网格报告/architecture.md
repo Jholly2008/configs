@@ -37,6 +37,7 @@ flowchart LR
         end
     end
     
+    %% 外部访问路由
     client -->|HTTP/HTTPS| istio
     istio -->|路由转发| scg
     
@@ -54,6 +55,13 @@ flowchart LR
     scg -->|team-c流量| gw-c
     scg -->|直接访问| svc-c1 & svc-c2 & svc-c3
     gw-c --> svc-c1 & svc-c2 & svc-c3
+    
+    %% 跨团队服务调用（直接通过service name）
+    svc-b1 -.->|创建订单时查询用户| svc-c1
+    svc-b1 -.->|下单时鉴权| svc-c2
+    svc-a1 -.->|支付时查询订单| svc-b1
+    svc-a2 -.->|账单生成时获取商品信息| svc-b3
+    svc-c3 -.->|发送订单通知| svc-b1
     
     style client fill:#f9f,stroke:#333,stroke-width:2px
     style istio fill:#bbf,stroke:#333,stroke-width:2px
