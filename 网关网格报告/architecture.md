@@ -6,30 +6,30 @@ flowchart LR
     scg["Spring Cloud Gateway<br>(gateway-ns)"]
     
     subgraph Service Mesh
-        subgraph "团队A (team-a-ns)"
+        subgraph "数据中台 (数据中台-ns)"
             direction TB
-            gw-a{"业务网关A"}
-            subgraph "支付服务集群"
+            gw-a{"业务网关-数据中台"}
+            subgraph "数据中台服务集群"
                 svc-a1[["支付核心服务"]]
                 svc-a2[["账单服务"]]
                 svc-a3[["清算服务"]]
             end
         end
         
-        subgraph "团队B (team-b-ns)"
+        subgraph "鼎捷云 (鼎捷云-ns)"
             direction TB
-            gw-b{"业务网关B"}
-            subgraph "订单服务集群"
+            gw-b{"业务网关-鼎捷云"}
+            subgraph "鼎捷云服务集群"
                 svc-b1[["订单服务"]]
                 svc-b2[["购物车服务"]]
                 svc-b3[["商品服务"]]
             end
         end
         
-        subgraph "团队C (team-c-ns)"
+        subgraph "中间件团队 (中间件-ns)"
             direction TB
-            gw-c{"业务网关C"}
-            subgraph "用户服务集群"
+            gw-c{"业务网关-中间件"}
+            subgraph "中间件服务集群"
                 svc-c1[["用户服务"]]
                 svc-c2[["认证服务"]]
                 svc-c3[["消息服务"]]
@@ -41,18 +41,18 @@ flowchart LR
     client -->|HTTP/HTTPS| istio
     istio -->|路由转发| scg
     
-    %% 团队A的路由
-    scg -->|team-a流量| gw-a
+    %% 数据中台-a-的路由
+    scg -->|数据中台-a流量| gw-a
     scg -->|直接访问| svc-a1 & svc-a2 & svc-a3
     gw-a --> svc-a1 & svc-a2 & svc-a3
     
-    %% 团队B的路由
-    scg -->|team-b流量| gw-b
+    %% 鼎捷云-b-的路由
+    scg -->|鼎捷云-b流量| gw-b
     scg -->|直接访问| svc-b1 & svc-b2 & svc-b3
     gw-b --> svc-b1 & svc-b2 & svc-b3
     
-    %% 团队C的路由
-    scg -->|team-c流量| gw-c
+    %% 中间件-c-的路由
+    scg -->|中间件-c流量| gw-c
     scg -->|直接访问| svc-c1 & svc-c2 & svc-c3
     gw-c --> svc-c1 & svc-c2 & svc-c3
     
