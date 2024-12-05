@@ -1,9 +1,9 @@
 ```mermaid
 
 flowchart LR
-    client[("前端客户端\n(Browser/App)")]
-    istio[["Istio Gateway\n(istio-system)"]]
-    scg["Spring Cloud Gateway\n(gateway-ns)"]
+    client[("前端客户端<br>(Browser/App)")]
+    istio[["Istio Gateway<br>(istio-system)"]]
+    scg["Spring Cloud Gateway<br>(gateway-ns)"]
     
     subgraph Service Mesh
         subgraph "团队A (team-a-ns)"
