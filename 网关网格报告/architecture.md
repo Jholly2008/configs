@@ -1,0 +1,62 @@
+flowchart LR
+    client[("前端客户端\n(Browser/App)")]
+    istio[["Istio Gateway\n(istio-system)"]]
+    scg["Spring Cloud Gateway\n(gateway-ns)"]
+    
+    subgraph Service Mesh
+        subgraph "团队A (team-a-ns)"
+            direction TB
+            gw-a{"业务网关A"}
+            subgraph "支付服务集群"
+                svc-a1[["支付核心服务"]]
+                svc-a2[["账单服务"]]
+                svc-a3[["清算服务"]]
+            end
+        end
+        
+        subgraph "团队B (team-b-ns)"
+            direction TB
+            gw-b{"业务网关B"}
+            subgraph "订单服务集群"
+                svc-b1[["订单服务"]]
+                svc-b2[["购物车服务"]]
+                svc-b3[["商品服务"]]
+            end
+        end
+        
+        subgraph "团队C (team-c-ns)"
+            direction TB
+            gw-c{"业务网关C"}
+            subgraph "用户服务集群"
+                svc-c1[["用户服务"]]
+                svc-c2[["认证服务"]]
+                svc-c3[["消息服务"]]
+            end
+        end
+    end
+    
+    client -->|HTTP/HTTPS| istio
+    istio -->|路由转发| scg
+    
+    %% 团队A的路由
+    scg -->|team-a流量| gw-a
+    scg -->|直接访问| svc-a1 & svc-a2 & svc-a3
+    gw-a --> svc-a1 & svc-a2 & svc-a3
+    
+    %% 团队B的路由
+    scg -->|team-b流量| gw-b
+    scg -->|直接访问| svc-b1 & svc-b2 & svc-b3
+    gw-b --> svc-b1 & svc-b2 & svc-b3
+    
+    %% 团队C的路由
+    scg -->|team-c流量| gw-c
+    scg -->|直接访问| svc-c1 & svc-c2 & svc-c3
+    gw-c --> svc-c1 & svc-c2 & svc-c3
+    
+    style client fill:#f9f,stroke:#333,stroke-width:2px
+    style istio fill:#bbf,stroke:#333,stroke-width:2px
+    style scg fill:#bfb,stroke:#333,stroke-width:2px
+    style gw-a fill:#ffb,stroke:#333,stroke-width:2px
+    style gw-b fill:#ffb,stroke:#333,stroke-width:2px
+    style gw-c fill:#ffb,stroke:#333,stroke-width:2px
+    style Service Mesh fill:#f5f5f5,stroke:#666,stroke-width:2px
