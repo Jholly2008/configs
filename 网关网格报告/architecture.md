@@ -42,17 +42,17 @@ flowchart LR
     istio -->|路由转发| scg
     
     %% 数据中台-a-的路由
-    scg -->|数据中台-a流量| gw-a
+    scg -->|数据中台-流量| gw-a
     scg -->|直接访问| svc-a1 & svc-a2 & svc-a3
     gw-a --> svc-a1 & svc-a2 & svc-a3
     
     %% 鼎捷云-b-的路由
-    scg -->|鼎捷云-b流量| gw-b
+    scg -->|鼎捷云-流量| gw-b
     scg -->|直接访问| svc-b1 & svc-b2 & svc-b3
     gw-b --> svc-b1 & svc-b2 & svc-b3
     
     %% 中间件-c-的路由
-    scg -->|中间件-c流量| gw-c
+    scg -->|中间件-流量| gw-c
     scg -->|直接访问| svc-c1 & svc-c2 & svc-c3
     gw-c --> svc-c1 & svc-c2 & svc-c3
     
