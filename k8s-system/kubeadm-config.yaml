@@ -1,0 +1,3 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+controlPlaneEndpoint: "k8s.cluster.local:6443"
