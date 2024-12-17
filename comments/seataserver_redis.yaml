@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seata-server
+  namespace: seata
+  labels:
+    k8s-app: seata-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: seata-server
+  template:
+    metadata:
+      labels:
+        k8s-app: seata-server
+    spec:
+      containers:
+        - name: seata-server
+          image: registry.digiwincloud.com.cn/dap/dap-seata-server:1.7.0_wr_1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8091
+              protocol: TCP
+            - name: http-prometheus
+              containerPort: 9898
+              protocol: TCP
+          volumeMounts:
+            - name: seata-config
+              mountPath: /seata-server/resources/application.yml
+              subPath: application.yml
+      volumes:
+        - name: seata-config
+          configMap:
+            name: seata-server-config
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: seata-server-config
+  namespace: seata
+data:
+  application.yml: |
+      server:
+        port: 7091
+      spring:
+        application:
+          name: seata-server
+      logging:
+        config: classpath:logback-spring.xml
+        file:
+          path: ${user.home}/logs/seata
+        extend:
+          logstash-appender:
+            destination: 127.0.0.1:4560
+        kafka-appender:
+          bootstrap-servers: 127.0.0.1:9092
+          topic: logback_to_logstash
+      console:
+        user:
+          username: seata
+          password: seata
+      seata:
+        config:
+          type: nacos
+          nacos:
+            server-addr: http://172.22.16.16:8848
+            namespace: 77c1f642-e570-448a-870c-a5c98ad06117
+            group: SEATA_GROUP
+            username: nacos
+            password: nacos
+            data-id: seataServer.properties
+        registry:
+          type: nacos
+          nacos:
+            application: seata-server
+            server-addr: http://172.22.16.16:8848
+            group: SEATA_GROUP
+            namespace: 77c1f642-e570-448a-870c-a5c98ad06117
+            cluster: default
+            username: nacos
+            password: nacos
+        security:
+          secretKey: SeataSecretKey0c382ef121d778043159209298fd40bf3850a017
+          tokenValidityInMilliseconds: 1800000
+          ignore:
+            urls: /,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.jpeg,/**/*.ico,/api/v1/auth/login
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seata-server
+  namespace: seata
+  labels:
+    k8s-app: seata-server
+spec:
+  type: NodePort
+  ports:
+    - port: 8091
+      nodePort: 30091
+      protocol: TCP
+      name: http
+  selector:
+    k8s-app: seata-server
