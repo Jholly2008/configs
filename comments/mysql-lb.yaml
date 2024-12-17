@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: mysql-lb
   annotations:
-    metallb.universe.tf/allow-shared-ip: "shared-ip-01"  # 使用相同的共享标识
+    metallb.universe.tf/allow-shared-ip: "shared-ip-01"
 spec:
   type: LoadBalancer
   ports:
@@ -11,4 +11,4 @@ spec:
       targetPort: 3306
       name: mysql
   selector:
-    app: mysql
+    app.kubernetes.io/component: primary
