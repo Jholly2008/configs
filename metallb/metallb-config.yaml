@@ -8,3 +8,16 @@ spec:
     - 43.163.103.111/32
     - 43.134.122.142/32
     - 43.163.102.250/32
+  autoAssign: true
+  allowedNamespaces:
+    - default
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2-advert
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - my-ip-pool
+  allowL2Advertising: true  # 启用 L2 模式下的 IP 共享
