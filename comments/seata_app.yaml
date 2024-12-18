@@ -17,8 +17,11 @@ spec:
     spec:
       containers:
         - name: seata-app
-          image: registry.digiwincloud.com.cn/dap/seata-benchmark-twobackend-5.2.0:1.0.0.1000
+          image: registry.digiwincloud.com.cn/dap/seata-benchmark-twobackend-5.2.0:1.0.0.1001
           imagePullPolicy: Always
+          env:
+        - name: TEST
+          value: "TEST-VALUE"
           ports:
             - name: http
               containerPort: 18085
