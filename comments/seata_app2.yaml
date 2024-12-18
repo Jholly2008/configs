@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seata-app2
+  namespace: seata
+  labels:
+    k8s-app: seata-app2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: seata-app2
+  template:
+    metadata:
+      labels:
+        k8s-app: seata-app2
+    spec:
+      containers:
+        - name: seata-app2
+          image: registry.digiwincloud.com.cn/dap/seata-benchmark-onebackend-5.2.0:1.0.0.1000
+          imagePullPolicy: Always
+          env:
+            - name: TEST
+              value: "TEST-VALUE"
+          ports:
+            - name: http
+              containerPort: 8085
+              protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: seata-app2
+  namespace: seata
+  labels:
+    k8s-app: seata-app2
+spec:
+  type: NodePort
+  ports:
+    - port: 8085
+      nodePort: 30093
+      protocol: TCP
+      name: http
+  selector:
+    k8s-app: seata-app2
