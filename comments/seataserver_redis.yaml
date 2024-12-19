@@ -66,8 +66,8 @@ data:
         config:
           type: nacos
           nacos:
-            server-addr: http://10.0.0.13:8848
-            namespace: e48bed0d-b580-4022-a330-4675fc4ecf73
+            server-addr: http://10.0.0.16:8848
+            namespace: de187e6f-947c-4059-bfbc-28735a0ed65a
             group: SEATA_GROUP
             username: nacos
             password: nacos
@@ -76,9 +76,9 @@ data:
           type: nacos
           nacos:
             application: seata-server
-            server-addr: http://10.0.0.13:8848
+            server-addr: http://10.0.0.16:8848
             group: SEATA_GROUP
-            namespace: e48bed0d-b580-4022-a330-4675fc4ecf73
+            namespace: de187e6f-947c-4059-bfbc-28735a0ed65a
             cluster: default
             username: nacos
             password: nacos
