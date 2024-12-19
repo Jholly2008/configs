@@ -1,0 +1,11 @@
+apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: http-headers-plugin
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: service-a
+  url: oci://docker.io/kkk2099/kkk:envoy-wasm-plugin-example-1.0
+  phase: AUTHN
