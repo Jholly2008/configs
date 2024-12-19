@@ -20,6 +20,8 @@ helm install my-redis bitnami/redis --version 20.6.0 \
   --set master.persistence.enabled=false \
   --set replica.persistence.enabled=false
   
+kubectl apply -f ./comments/redis-lb.yaml
+
 
 nacos:
 docker run -d \
@@ -30,7 +32,7 @@ docker run -d \
   -e TZ=Asia/Taipei \
   -e MODE=standalone \
   -e SPRING_DATASOURCE_PLATFORM=mysql \
-  -e MYSQL_SERVICE_HOST=10.0.0.13 \
+  -e MYSQL_SERVICE_HOST=10.0.0.16 \
   -e MYSQL_SERVICE_PORT=13307 \
   -e MYSQL_SERVICE_USER=root \
   -e MYSQL_SERVICE_PASSWORD=111111 \
@@ -45,36 +47,44 @@ docker run -d \
   
   
 mysql
-43.134.135.192:13307
-10.0.0.13:13307
+43.153.195.164:13307
+10.0.0.16:13307
 root/111111
 
 redis-sentile
 6379端口对应：
-43.134.135.192:32142
-10.0.0.13:32142
+43.153.195.164:32126
+10.0.0.16:32126
+密码：111111
 26379端口对应：
-43.134.135.192:30700
-10.0.0.13:30700
+43.153.195.164:30129
+10.0.0.16:30129
 
-nacos-server
-43.134.135.192:8848
-10.0.0.13:8848
+nacos
+43.153.195.164:8848
+10.0.0.16:8848
+
+Windows
+43.134.241.62
+Administrator/13579@tcKkkk
 
 seata-server
-10.0.0.13:30091
-43.134.135.192:30091
+10.0.0.16:30091
+43.153.195.164:30091
 
-seata-app1(two)
-10.0.0.13:30092
-43.134.135.192:30092
+seata-app
+10.0.0.16:30092
+43.153.195.164:30092
 
-seata-app2(one)
-10.0.0.13:30093
-43.134.135.192:30093
+seata-app2
+10.0.0.16:30093
+43.153.195.164:30093
 
 kubectl create namespace seata
-kubectl apply -f seataserver_redis.yaml
+kubectl apply -f ./comments/seataserver_redis.yaml
+kubectl apply -f ./comments/seata_app.yaml
+kubectl apply -f ./comments/seata_app2.yaml
+kubectl get pods -n seata
 
 
 /******************************************/
