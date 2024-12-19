@@ -6,8 +6,8 @@ metadata:
 spec:
   addresses:
     - 43.153.195.164/32
-    - 43.163.83.98/32
-    - 43.134.182.237/32
+    - 43.128.79.156/32
+    - 43.134.176.78/32
   autoAssign: true
 ---
 apiVersion: metallb.io/v1beta1
