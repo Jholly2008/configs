@@ -61,8 +61,17 @@ nacos-server
 43.134.135.192:8848
 10.0.0.13:8848
 
+seata-server
+10.0.0.13:30091
+43.134.135.192:30091
 
+seata-app1(two)
+10.0.0.13:30092
+43.134.135.192:30092
 
+seata-app2(one)
+10.0.0.13:30093
+43.134.135.192:30093
 
 kubectl create namespace seata
 kubectl apply -f seataserver_redis.yaml
