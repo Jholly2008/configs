@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: seata-app2
-          image: registry.digiwincloud.com.cn/dap/seata-benchmark-onebackend-5.2.0:1.0.0.1004
+          image: registry.digiwincloud.com.cn/dap/seata-benchmark-twobackend-5.2.0:1.0.0.1006
           imagePullPolicy: Always
           env:
             - name: TEST
