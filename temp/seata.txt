@@ -75,7 +75,7 @@ nacos
 10.0.0.16:8848
 
 Windows
-43.134.241.62
+43.156.105.186
 Administrator/13579@tcKkkk
 
 seata-server
