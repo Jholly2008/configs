@@ -1,0 +1,119 @@
+##################################################################################################
+# frontend-react
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-react
+  labels:
+    app: frontend-react
+    service: frontend-react
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: frontend-react
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-frontend-react
+  labels:
+    account: frontend-react
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-react-v1
+  labels:
+    app: frontend-react
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-react
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: frontend-react
+        version: v1
+    spec:
+      serviceAccountName: demo-frontend-react
+      containers:
+      - name: frontend-react
+        image: kkk2099/kkk:react-1.0
+        imagePullPolicy: Always
+        env:
+        - name: GATEWAY_URL
+          value: "http://gateway.default.svc.cluster.local:10000"
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-react-v2
+  labels:
+    app: frontend-react
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-react
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: frontend-react
+        version: v2
+    spec:
+      serviceAccountName: demo-frontend-react
+      containers:
+      - name: frontend-react
+        image: kkk2099/kkk:react-2.0
+        imagePullPolicy: Always
+        env:
+        - name: GATEWAY_URL
+          value: "http://gateway.default.svc.cluster.local:10000"
+        ports:
+        - containerPort: 80
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: frontend-react
+spec:
+  hosts:
+  - frontend-react
+  http:
+  - match:
+    - headers:
+        cookie:
+          regex: ".*x-frontend-version=v2.*"
+    route:
+    - destination:
+        host: frontend-react
+        subset: v2
+  - route:
+    - destination:
+        host: frontend-react
+        subset: v1
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: frontend-react
+spec:
+  host: frontend-react
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---

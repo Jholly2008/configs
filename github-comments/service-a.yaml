@@ -119,13 +119,27 @@ spec:
   - match:
     - headers:
         baggage:
-          regex: ".*x-api-version=v1.*"
+          regex: ".*x-api-version=v2.*"
     route:
     - destination:
         host: service-a
-        subset: v1
+        subset: v2
   - route:
     - destination:
         host: service-a
-        subset: v2
+        subset: v1
+---
+apiVersion: networking.istio.io/v1
+kind: DestinationRule
+metadata:
+  name: service-a
+spec:
+  host: service-a
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
 ---
