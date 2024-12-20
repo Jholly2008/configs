@@ -19,7 +19,17 @@ helm install my-redis bitnami/redis --version 20.6.0 \
   --set-string auth.password=111111 \
   --set master.persistence.enabled=false \
   --set replica.persistence.enabled=false
-  
+
+helm install my-redis bitnami/redis --version 20.6.0 \
+  --set architecture=replication \
+  --set sentinel.enabled=true \
+  --set usePassword=false \
+  --set auth.enabled=false \
+  --set auth.sentinel=false \
+  --set sentinel.usePassword=false \
+  --set master.persistence.enabled=false \
+  --set replica.persistence.enabled=false
+
 kubectl apply -f ./comments/redis-lb.yaml
 
 
