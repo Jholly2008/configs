@@ -41,6 +41,7 @@ spec:
         app: service-a
         version: v1
     spec:
+      nodeName: vm-1-10-debian
       serviceAccountName: demo-service-a
       containers:
       - name: service-a

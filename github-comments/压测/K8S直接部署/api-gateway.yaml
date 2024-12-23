@@ -38,6 +38,7 @@ spec:
       labels:
         app: gateway
     spec:
+      nodeName: vm-1-14-debian
       serviceAccountName: demo-gateway
       containers:
       - name: gateway
