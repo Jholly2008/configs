@@ -2,8 +2,6 @@ apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
   name: common-gateway
-  annotations:
-    metallb.universe.tf/allow-shared-ip: "shared-ip-01"
 spec:
   selector:
     istio: ingressgateway
