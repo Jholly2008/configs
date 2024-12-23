@@ -1,0 +1,65 @@
+##################################################################################################
+# service-a
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a
+  labels:
+    app: service-a
+    service: service-a
+spec:
+  ports:
+  - port: 10001
+    name: http
+  selector:
+    app: service-a
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-service-a
+  labels:
+    account: service-a
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a-v1
+  labels:
+    app: service-a
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-a
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: service-a
+        version: v1
+    spec:
+      serviceAccountName: demo-service-a
+      containers:
+      - name: service-a
+        image: kkk2099/kkk:service-a-1.0
+        imagePullPolicy: Always
+        env:
+        - name: JVM_MEM
+          value: "2G"
+        - name: APP_VERSION
+          value: "v1"
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
+        - name: SERVICE_B_URI
+          value: "http://service-b:10002"
+        - name: LOG_LEVEL
+          value: "ERROR"
+        ports:
+        - containerPort: 10001
+        resources:
+          requests:
+            memory: "2.5Gi"
+---
