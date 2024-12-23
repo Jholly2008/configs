@@ -13,6 +13,5 @@ apiServer:
   - "kubernetes.default"
   - "kubernetes.default.svc"
   - "kubernetes.default.svc.cluster.local"
-  - "vm-16-17-debian"
-  - "VM-16-15-debian"
-  - "VM-16-16-debian"
+  - "VM-0-16-debian"
+  - "VM-1-17-debian"
