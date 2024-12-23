@@ -5,9 +5,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 43.153.195.164/32
-    - 43.156.93.174/32
-    - 43.128.114.82/32
+    - 43.163.90.124/32
   autoAssign: true
 ---
 apiVersion: metallb.io/v1beta1
