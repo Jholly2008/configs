@@ -72,14 +72,6 @@ spec:
   hosts:
   - service-a
   http:
-  - match:
-    - headers:
-        baggage:
-          regex: ".*x-api-version=v2.*"
-    route:
-    - destination:
-        host: service-a
-        subset: v2
   - route:
     - destination:
         host: service-a
