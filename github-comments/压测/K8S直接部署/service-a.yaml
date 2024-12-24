@@ -58,6 +58,10 @@ spec:
           value: "http://service-b:10002"
         - name: LOG_LEVEL
           value: "ERROR"
+        - name: JAVA_TOOL_OPTIONS
+          value: "-javaagent:./agent/opentelemetry-javaagent.jar"
+        - name: OTEL_SERVICE_NAME
+          value: "service-a"
         ports:
         - containerPort: 10001
         resources:
