@@ -62,6 +62,8 @@ spec:
           value: "-javaagent:./agent/opentelemetry-javaagent.jar"
         - name: OTEL_SERVICE_NAME
           value: "service-a"
+        - name: OTEL_LOGS_EXPORTER
+          value: "none"
         ports:
         - containerPort: 10001
         resources:
