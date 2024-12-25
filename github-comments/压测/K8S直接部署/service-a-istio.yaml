@@ -3,6 +3,7 @@ apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
   name: service-a
+  namespace: demo
 spec:
   hosts:
   - service-a
@@ -16,6 +17,7 @@ apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
   name: service-a
+  namespace: demo
 spec:
   host: service-a
   subsets:
