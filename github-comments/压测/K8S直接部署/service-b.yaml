@@ -1,0 +1,88 @@
+##################################################################################################
+# service-b
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-b
+  labels:
+    app: service-b
+    service: service-b
+spec:
+  ports:
+  - port: 10002
+    name: http
+  selector:
+    app: service-b
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-service-b
+  labels:
+    account: service-b
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b-v1
+  labels:
+    app: service-b
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-b
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: service-b
+        version: v1
+    spec:
+      serviceAccountName: demo-service-b
+      containers:
+      - name: service-b
+        image: kkk2099/kkk:service-b-1.0
+        imagePullPolicy: Always
+        env:
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
+        - name: APP_VERSION
+          value: "v1"
+        ports:
+        - containerPort: 10002
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-b-v2
+  labels:
+    app: service-b
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-b
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: service-b
+        version: v2
+    spec:
+      serviceAccountName: demo-service-b
+      containers:
+      - name: service-b
+        image: kkk2099/kkk:service-b-1.0
+        imagePullPolicy: Always
+        env:
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
+        - name: APP_VERSION
+          value: "v2"
+        ports:
+        - containerPort: 10002
+---
