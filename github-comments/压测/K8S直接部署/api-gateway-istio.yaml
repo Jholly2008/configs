@@ -1,0 +1,20 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway
+spec:
+  hosts:
+  - gateway
+  http:
+  - route:
+    - destination:
+        host: gateway
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: gateway
+spec:
+  host: gateway
+---
