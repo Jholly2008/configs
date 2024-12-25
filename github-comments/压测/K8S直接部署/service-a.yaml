@@ -74,3 +74,55 @@ spec:
           requests:
             memory: "2.5Gi"
 ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a-v2
+  labels:
+    app: service-a
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-a
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: service-a
+        version: v2
+    spec:
+      nodeName: vm-1-10-debian
+      serviceAccountName: demo-service-a
+      containers:
+      - name: service-a
+        image: kkk2099/kkk:service-a-1.0
+        imagePullPolicy: Always
+        env:
+        - name: JVM_MEM
+          value: "2G"
+        - name: APP_VERSION
+          value: "v2"
+        - name: APP_KUBERNETES_ENABLED
+          value: "true"
+        - name: SERVICE_B_URI
+          value: "http://service-b:10002"
+        - name: LOG_LEVEL
+          value: "ERROR"
+        - name: JAVA_TOOL_OPTIONS
+          value: "-javaagent:./agent/opentelemetry-javaagent.jar"
+        - name: OTEL_SERVICE_NAME
+          value: "service-a"
+        - name: OTEL_LOGS_EXPORTER
+          value: "none"
+        - name: OTEL_METRICS_EXPORTER
+          value: "none"
+        - name: OTEL_TRACES_EXPORTER
+          value: "none"
+        ports:
+        - containerPort: 10001
+        resources:
+          requests:
+            memory: "2.5Gi"
+---
