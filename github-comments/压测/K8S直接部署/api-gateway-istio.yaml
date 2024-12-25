@@ -3,6 +3,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: gateway
+  namespace: demo
 spec:
   hosts:
   - gateway
@@ -15,6 +16,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: gateway
+  namespace: demo
 spec:
   host: gateway
 ---
