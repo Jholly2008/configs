@@ -1,8 +1,8 @@
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
-  name: demo-gateway
-  namespace: demo
+  name: istio-gateway
+  namespace: istio-system
 spec:
   selector:
     istio: ingressgateway
@@ -23,7 +23,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - demo-gateway
+  - istio-system/istio-gateway
   http:
   - match:
     - uri:
