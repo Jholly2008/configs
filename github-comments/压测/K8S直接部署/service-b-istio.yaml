@@ -2,11 +2,11 @@
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: service-a
+  name: service-b
   namespace: demo
 spec:
   hosts:
-  - service-a
+  - service-b
   http:
   - match:
     - headers:
@@ -14,20 +14,20 @@ spec:
           regex: ".*x-api-version=v2.*"
     route:
     - destination:
-        host: service-a
+        host: service-b
         subset: v2
   - route:
     - destination:
-        host: service-a
+        host: service-b
         subset: v1
 ---
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
-  name: service-a
+  name: service-b
   namespace: demo
 spec:
-  host: service-a
+  host: service-b
   subsets:
   - name: v1
     labels:
