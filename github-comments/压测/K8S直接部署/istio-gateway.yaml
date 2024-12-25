@@ -1,7 +1,8 @@
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:
-  name: common-gateway
+  name: demo-gateway
+  namespace: demo
 spec:
   selector:
     istio: ingressgateway
@@ -16,12 +17,13 @@ spec:
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: service-a-ingress
+  name: service-demo-ingress
+  namespace: demo
 spec:
   hosts:
   - "*"
   gateways:
-  - common-gateway
+  - demo-gateway
   http:
   - match:
     - uri:
