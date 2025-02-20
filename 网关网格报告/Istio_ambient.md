@@ -1,22 +1,22 @@
 graph TB
-    subgraph "Node 1"
-        subgraph "Pod A"
+    subgraph Node1
+        subgraph PodA
             A[App A]
         end
-        subgraph "Pod B"
+        subgraph PodB
             B[App B]
         end
         Z1[ztunnel]
     end
     
-    subgraph "Node 2"
-        subgraph "Pod C"
+    subgraph Node2
+        subgraph PodC
             C[App C]
         end
         Z2[ztunnel]
     end
     
-    subgraph "Waypoint Proxy Layer"
+    subgraph WaypointProxyLayer
         W1[Waypoint Proxy A]
         W2[Waypoint Proxy B]
     end
