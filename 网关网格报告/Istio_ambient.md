@@ -1,27 +1,18 @@
 flowchart TD
-    subgraph Node1["Node 1"]
-        direction TB
-        subgraph PodA["Pod A"]
-            A[App A]
-        end
-        subgraph PodB["Pod B"]
-            B[App B]
-        end
+    subgraph N1[Node 1]
+        A[App A]
+        B[App B]
         Z1[ztunnel]
     end
     
-    subgraph Node2["Node 2"]
-        direction TB
-        subgraph PodC["Pod C"]
-            C[App C]
-        end
+    subgraph N2[Node 2]
+        C[App C]
         Z2[ztunnel]
     end
     
-    subgraph WaypointLayer["Waypoint Proxy Layer"]
-        direction LR
-        W1[Waypoint Proxy A]
-        W2[Waypoint Proxy B]
+    subgraph WP[Waypoint Layer]
+        W1[Waypoint A]
+        W2[Waypoint B]
     end
     
     A --> Z1
@@ -37,7 +28,7 @@ flowchart TD
     W1 --> B
     W2 --> C
     
-    style Z1 fill:#f9f,stroke:#333,stroke-width:2px
-    style Z2 fill:#f9f,stroke:#333,stroke-width:2px
-    style W1 fill:#bbf,stroke:#333,stroke-width:2px
-    style W2 fill:#bbf,stroke:#333,stroke-width:2px
+    style Z1 fill:#f9f,stroke:#333
+    style Z2 fill:#f9f,stroke:#333
+    style W1 fill:#bbf,stroke:#333
+    style W2 fill:#bbf,stroke:#333
