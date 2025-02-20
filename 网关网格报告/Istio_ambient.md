@@ -1,3 +1,5 @@
+```mermaid
+
 graph TD
     subgraph N1[Node1]
         A[AppA]
@@ -22,3 +24,5 @@ graph TD
     W1-->A
     W1-->B
     W2-->C
+
+```
