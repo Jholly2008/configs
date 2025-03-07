@@ -1,0 +1,11 @@
+背景：
+我们现有的系统：微服务架构，后端服务主要语言是JAVA，剩下的基本是python。很多业务团队，每个团队负责3-50个不等的服务；
+云上服务目前基于K8S部署；
+对外服务主要使用ingress暴露到公网；
+服务内部间交互主要使用nacos和ingress（部分nacos+部分ingress，ingress主要基于http交互）；
+目前没有使用API网关；
+其它一些已有的组件：各种数据库、prometheus、ELK、pingpoint、nacos、apollo、各种MQ；
+
+现在要引入service mesh（istio）和网关，目的是提高服务稳定性和可观测性；
+选型：对于istio，希望可以优先使用Ambient模式；网关使用springcloud gateway；
+
