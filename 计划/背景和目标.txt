@@ -9,3 +9,5 @@
 现在要引入service mesh（istio）和网关，目的是提高服务稳定性和可观测性；
 选型：对于istio，希望可以优先使用Ambient模式；网关使用springcloud gateway；
 
+现有的服务举例：
+服务A:通过OPS构建，构建阶段会根据一些配置创建K8S文件和ingress文件。之后会给K8S调度并部署。其它服务通过服务A对应的ingress暴露的公网或者内网URL来发起HTTP调用访问它的API。
