@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Background -->
+  <rect width="900" height="600" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="450" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#0055cc">Istio 与 Nacos 最终阶段架构</text>
+  
+  <!-- API Gateway Box -->
+  <rect x="350" y="60" width="200" height="50" rx="5" ry="5" fill="#eeffee" stroke="#009900" stroke-width="2"/>
+  <text x="450" y="80" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">API 网关</text>
+  <text x="450" y="100" font-family="Arial" font-size="12" text-anchor="middle">(Spring Cloud Gateway)</text>
+  
+  <!-- Control Plane Box -->
+  <rect x="320" y="130" width="260" height="140" rx="5" ry="5" fill="#f5f5f5" stroke="#000000" stroke-width="2"/>
+  <text x="450" y="150" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">控制平面</text>
+  
+  <!-- Istiod -->
+  <rect x="340" y="170" width="100" height="60" rx="5" ry="5" fill="#ddeeff" stroke="#0066cc" stroke-width="2"/>
+  <text x="390" y="195" font-family="Arial" font-size="14" text-anchor="middle">服务网格</text>
+  <text x="390" y="215" font-family="Arial" font-size="14" text-anchor="middle">Istio istiod</text>
+  
+  <!-- Nacos -->
+  <rect x="460" y="170" width="100" height="60" rx="5" ry="5" fill="#eeffee" stroke="#009900" stroke-width="2"/>
+  <text x="510" y="195" font-family="Arial" font-size="14" text-anchor="middle">配置中心</text>
+  <text x="510" y="215" font-family="Arial" font-size="14" text-anchor="middle">Nacos</text>
+  
+  <!-- Config Sync Note -->
+  <rect x="350" y="240" width="200" height="20" rx="5" ry="5" fill="#ffe0cc" stroke="#ff6600" stroke-width="1"/>
+  <text x="450" y="255" font-family="Arial" font-size="12" text-anchor="middle">配置同步 (Nacos → Istio ConfigMap)</text>
+  
+  <!-- Service Mesh Box -->
+  <rect x="100" y="290" width="700" height="230" rx="5" ry="5" fill="#f0f0f0" stroke="#000000" stroke-width="2"/>
+  <text x="450" y="310" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">服务网格 (Istio Ambient)</text>
+  
+  <!-- Java Container Box -->
+  <rect x="130" y="330" width="180" height="170" rx="5" ry="5" fill="#eeeeff" stroke="#000000" stroke-width="2"/>
+  <text x="220" y="350" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Container 1 (Java)</text>
+  
+  <!-- Java Service -->
+  <rect x="150" y="370" width="140" height="50" rx="5" ry="5" fill="#ccddff" stroke="#0066cc" stroke-width="2"/>
+  <text x="220" y="400" font-family="Arial" font-size="14" text-anchor="middle">Java 服务</text>
+  
+  <!-- Java Http Client -->
+  <rect x="150" y="430" width="140" height="30" rx="5" ry="5" fill="#aaccff" stroke="#0066cc" stroke-width="1"/>
+  <text x="220" y="450" font-family="Arial" font-size="12" text-anchor="middle">Http Client</text>
+  
+  <!-- Java Service Metadata -->
+  <rect x="150" y="470" width="140" height="20" rx="5" ry="5" fill="#ffffcc" stroke="#cccc00" stroke-width="1"/>
+  <text x="220" y="485" font-family="Arial" font-size="12" text-anchor="middle">Metadata 标签</text>
+  
+  <!-- Python Container Box -->
+  <rect x="590" y="330" width="180" height="170" rx="5" ry="5" fill="#eeeeff" stroke="#000000" stroke-width="2"/>
+  <text x="680" y="350" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Container 2 (Python/Go)</text>
+  
+  <!-- Python Service -->
+  <rect x="610" y="370" width="140" height="50" rx="5" ry="5" fill="#ffcccc" stroke="#cc0066" stroke-width="2"/>
+  <text x="680" y="400" font-family="Arial" font-size="14" text-anchor="middle">Python/Go 服务</text>
+  
+  <!-- Python Http Client -->
+  <rect x="610" y="430" width="140" height="30" rx="5" ry="5" fill="#ffaaaa" stroke="#cc0066" stroke-width="1"/>
+  <text x="680" y="450" font-family="Arial" font-size="12" text-anchor="middle">Http Client</text>
+  
+  <!-- Python Service Metadata -->
+  <rect x="610" y="470" width="140" height="20" rx="5" ry="5" fill="#ffffcc" stroke="#cccc00" stroke-width="1"/>
+  <text x="680" y="485" font-family="Arial" font-size="12" text-anchor="middle">Metadata 标签</text>
+  
+  <!-- Waypoint Proxy -->
+  <rect x="360" y="350" width="180" height="130" rx="5" ry="5" fill="#ddeeff" stroke="#0066cc" stroke-width="2"/>
+  <text x="450" y="370" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Istio Waypoint</text>
+  
+  <!-- HTTP Request Processor -->
+  <rect x="380" y="390" width="140" height="40" rx="5" ry="5" fill="#ccddff" stroke="#0066cc" stroke-width="1"/>
+  <text x="450" y="415" font-family="Arial" font-size="12" text-anchor="middle">调用代理 (L7流量处理)</text>
+  
+  <!-- Circuit Breaker -->
+  <rect x="380" y="440" width="140" height="30" rx="5" ry="5" fill="#ccddff" stroke="#0066cc" stroke-width="1"/>
+  <text x="450" y="460" font-family="Arial" font-size="12" text-anchor="middle">限流断路代理</text>
+  
+  <!-- Ambient ZTunnel -->
+  <rect x="140" y="540" width="620" height="30" rx="5" ry="5" fill="#ccffcc" stroke="#009900" stroke-width="1"/>
+  <text x="450" y="560" font-family="Arial" font-size="14" text-anchor="middle">Istio Ambient ZTunnel (L4 安全传输层)</text>
+  
+  <!-- Connection Lines - Gateway to Istiod -->
+  <path d="M 450 110 L 450 170" fill="none" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- Istiod to Nacos -->
+  <path d="M 440 200 L 460 200" fill="none" stroke="#ff6600" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- Istiod to Service Mesh -->
+  <path d="M 390 230 L 390 350" fill="none" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- Java Service to Waypoint -->
+  <path d="M 290 400 L 360 400" fill="none" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- Waypoint to Python Service -->
+  <path d="M 540 400 L 610 400" fill="none" stroke="#0066cc" stroke-width="2"/>
+  
+  <!-- All services to ZTunnel -->
+  <path d="M 220 500 L 220 540" fill="none" stroke="#009900" stroke-width="1.5"/>
+  <path d="M 450 480 L 450 540" fill="none" stroke="#009900" stroke-width="1.5"/>
+  <path d="M 680 500 L 680 540" fill="none" stroke="#009900" stroke-width="1.5"/>
+  
+  <!-- Java to Istiod -->
+  <path d="M 220 370 C 220 310, 300 200, 340 200" fill="none" stroke="#0066cc" stroke-width="1.5"/>
+  
+  <!-- Python to Istiod -->
+  <path d="M 680 370 C 680 310, 500 200, 440 200" fill="none" stroke="#0066cc" stroke-width="1.5"/>
+  
+  <!-- Note Box for Service Discovery -->
+  <rect x="100" y="580" width="300" height="70" rx="5" ry="5" fill="#eeffee" stroke="#009900" stroke-width="1"/>
+  <text x="250" y="600" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">服务注册发现（全部基于Istio）</text>
+  <text x="120" y="620" font-family="Arial" font-size="12">- 所有服务（Java、Python、Go）统一使用Istio进行注册发现</text>
+  <text x="120" y="640" font-family="Arial" font-size="12">- 服务元数据存储在K8s ConfigMap，支持基于元数据路由</text>
+  
+  <!-- Note Box for Configuration -->
+  <rect x="500" y="580" width="300" height="70" rx="5" ry="5" fill="#ffe0cc" stroke="#ff6600" stroke-width="1"/>
+  <text x="650" y="600" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">配置管理</text>
+  <text x="520" y="620" font-family="Arial" font-size="12">- Nacos降级为纯配置中心，不再负责服务发现</text>
+  <text x="520" y="640" font-family="Arial" font-size="12">- 配置变更通过同步机制自动更新到Istio/K8s ConfigMap</text>
+</svg>
