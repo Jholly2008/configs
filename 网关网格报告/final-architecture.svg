@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650">
   <!-- Background -->
-  <rect width="900" height="600" fill="#ffffff"/>
+  <rect width="900" height="650" fill="#ffffff"/>
   
   <!-- Title -->
   <text x="450" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#0055cc">Istio 与 Nacos 最终阶段架构</text>
