@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+  <!-- 背景 -->
+  <rect width="1000" height="700" fill="#f8f9fa" />
+  
+  <!-- 标题 -->
+  <text x="500" y="40" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" font-weight="bold">Istio Sidecar模式架构图（含Envoy详细结构）</text>
+  
+  <!-- Kubernetes Pod -->
+  <rect x="100" y="80" width="800" height="500" rx="10" ry="10" fill="#e6f7ff" stroke="#1890ff" stroke-width="2" />
+  <text x="150" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Kubernetes Pod</text>
+  
+  <!-- 应用容器 -->
+  <rect x="130" y="130" width="300" height="420" rx="5" ry="5" fill="#ffffff" stroke="#52c41a" stroke-width="2" />
+  <text x="280" y="160" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">应用容器</text>
+  
+  <!-- 应用程序 -->
+  <rect x="150" y="180" width="260" height="350" rx="5" ry="5" fill="#f6ffed" stroke="#52c41a" stroke-width="1" />
+  <text x="280" y="210" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">应用程序</text>
+  
+  <!-- Istio Sidecar (Envoy) 容器 -->
+  <rect x="470" y="130" width="400" height="420" rx="5" ry="5" fill="#ffffff" stroke="#1890ff" stroke-width="2" />
+  <text x="670" y="160" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">Istio Sidecar (Envoy) 容器</text>
+  
+  <!-- Envoy 代理内部架构 -->
+  <rect x="490" y="180" width="360" height="350" rx="5" ry="5" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  
+  <!-- Envoy 监听器 (Listeners) -->
+  <rect x="500" y="200" width="340" height="70" rx="3" ry="3" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="670" y="220" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Envoy 监听器 (Listeners)</text>
+  <rect x="510" y="230" width="150" height="30" rx="3" ry="3" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  <text x="585" y="250" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">入站监听器 (15006)</text>
+  <rect x="680" y="230" width="150" height="30" rx="3" ry="3" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  <text x="755" y="250" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">出站监听器 (15001)</text>
+  
+  <!-- Envoy 过滤器链 (Filter Chains) -->
+  <rect x="500" y="280" width="340" height="110" rx="3" ry="3" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="670" y="300" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">过滤器链 (Filter Chains)</text>
+  
+  <!-- 入站过滤器 -->
+  <rect x="510" y="310" width="150" height="70" rx="3" ry="3" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  <text x="585" y="325" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">入站过滤器</text>
+  <rect x="520" y="330" width="130" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="585" y="345" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">TLS Inspector</text>
+  <rect x="520" y="350" width="130" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="585" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">HTTP Connection Manager</text>
+  
+  <!-- 出站过滤器 -->
+  <rect x="680" y="310" width="150" height="70" rx="3" ry="3" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  <text x="755" y="325" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">出站过滤器</text>
+  <rect x="690" y="330" width="130" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="755" y="345" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">TCP Proxy</text>
+  <rect x="690" y="350" width="130" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="755" y="365" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">外部授权 (Ext Authz)</text>
+  
+  <!-- HTTP 过滤器 (HTTP Filters) -->
+  <rect x="500" y="400" width="340" height="120" rx="3" ry="3" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="670" y="420" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">HTTP 过滤器 (HTTP Filters)</text>
+  
+  <!-- HTTP 过滤器细节 -->
+  <rect x="510" y="430" width="320" height="80" rx="3" ry="3" fill="#e6f7ff" stroke="#1890ff" stroke-width="1" />
+  <rect x="520" y="440" width="140" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="590" y="455" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">CORS</text>
+  <rect x="520" y="465" width="140" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="590" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">故障注入 (Fault Injection)</text>
+  <rect x="680" y="440" width="140" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="750" y="455" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">JWT 认证</text>
+  <rect x="680" y="465" width="140" height="20" rx="2" ry="2" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="750" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">指标收集 (Stats)</text>
+  
+  <!-- 集群管理器 (Cluster Manager) -->
+  <rect x="500" y="480" width="160" height="40" rx="3" ry="3" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="580" y="505" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">集群管理器</text>
+  
+  <!-- 路由配置 -->
+  <rect x="680" y="480" width="160" height="40" rx="3" ry="3" fill="#ffffff" stroke="#1890ff" stroke-width="1" />
+  <text x="760" y="505" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">路由配置</text>
+  
+  <!-- 控制平面交互 -->
+  <rect x="400" y="600" width="200" height="60" rx="5" ry="5" fill="#fff2e8" stroke="#fa8c16" stroke-width="2" />
+  <text x="500" y="625" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" font-weight="bold">Istiod (控制平面)</text>
+  <text x="500" y="645" font-family="Arial, sans-serif" font-size="12" text-anchor="middle">xDS API</text>
+  
+  <!-- 流量拦截细节 -->
+  <rect x="50" y="600" width="160" height="60" rx="5" ry="5" fill="#fff2e8" stroke="#fa8c16" stroke-width="2" />
+  <text x="130" y="625" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">iptables 规则</text>
+  <text x="130" y="645" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">流量拦截与重定向</text>
+  
+  <!-- 网格外流量 -->
+  <rect x="790" y="600" width="160" height="60" rx="5" ry="5" fill="#fff2e8" stroke="#fa8c16" stroke-width="2" />
+  <text x="870" y="625" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">外部服务</text>
+  <text x="870" y="645" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">网格外流量</text>
+  
+  <!-- 连接线 - 入站流量 -->
+  <path d="M50 350 L130 350" stroke="#fa8c16" stroke-width="2" stroke-dasharray="5,5" />
+  <polygon points="130,350 120,345 120,355" fill="#fa8c16" />
+  <text x="90" y="340" font-family="Arial, sans-serif" font-size="10" fill="#fa8c16">入站流量</text>
+  
+  <!-- iptables 到 Envoy 的流量重定向 -->
+  <path d="M130 590 L130 500 L510 500" stroke="#fa8c16" stroke-width="2" stroke-dasharray="5,5" />
+  <polygon points="510,500 500,495 500,505" fill="#fa8c16" />
+  <text x="300" y="490" font-family="Arial, sans-serif" font-size="10" fill="#fa8c16">流量重定向</text>
+  
+  <!-- Envoy 到应用的流量 -->
+  <path d="M500 300 L350 300" stroke="#52c41a" stroke-width="2" />
+  <polygon points="350,300 360,295 360,305" fill="#52c41a" />
+  <text x="425" y="290" font-family="Arial, sans-serif" font-size="10" fill="#52c41a">处理后流量</text>
+  
+  <!-- 应用到 Envoy 的出站流量 -->
+  <path d="M350 400 L500 400" stroke="#1890ff" stroke-width="2" />
+  <polygon points="500,400 490,395 490,405" fill="#1890ff" />
+  <text x="425" y="390" font-family="Arial, sans-serif" font-size="10" fill="#1890ff">出站流量</text>
+  
+  <!-- Envoy 到外部的流量 -->
+  <path d="M830 400 L950 400 L950 500 L870 590" stroke="#1890ff" stroke-width="2" />
+  <polygon points="870,590 880,585 875,580" fill="#1890ff" />
+  <text x="960" y="450" font-family="Arial, sans-serif" font-size="10" fill="#1890ff">到外部服务</text>
+  
+  <!-- 控制平面交互 -->
+  <path d="M500 590 L500 540 L670 540" stroke="#fa8c16" stroke-width="2" stroke-dasharray="5,5" />
+  <polygon points="670,540 660,535 660,545" fill="#fa8c16" />
+  <text x="570" y="555" font-family="Arial, sans-serif" font-size="10" fill="#fa8c16">配置下发</text>
+  
+  <!-- 拦截器说明 -->
+  <rect x="50" y="450" width="160" height="120" rx="5" ry="5" fill="#f9f0ff" stroke="#722ed1" stroke-width="2" />
+  <text x="130" y="470" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">流量拦截器</text>
+  <text x="130" y="490" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">入站: REDIRECT -> 15006</text>
+  <text x="130" y="510" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">出站: REDIRECT -> 15001</text>
+  <text x="130" y="530" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">使用 iptables PREROUTING</text>
+  <text x="130" y="550" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">和 OUTPUT 链实现</text>
+</svg>
