@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial" font-size="24" text-anchor="middle" font-weight="bold" fill="#0055aa">基于Nacos官方组件的Istio集成架构</text>
+  
+  <!-- Kubernetes Cluster Box -->
+  <rect x="100" y="70" width="600" height="450" rx="10" ry="10" fill="#f8f8f8" stroke="#999999" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="400" y="90" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Kubernetes 集群</text>
+  
+  <!-- Control Plane Box -->
+  <rect x="130" y="110" width="540" height="140" rx="8" ry="8" fill="#e6e6e6" stroke="#666666" stroke-width="1"/>
+  <text x="400" y="130" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">控制平面</text>
+  
+  <!-- Nacos Server -->
+  <rect x="150" y="150" width="200" height="80" rx="8" ry="8" fill="#e6f9e6" stroke="#009900" stroke-width="2"/>
+  <text x="250" y="175" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Nacos Server</text>
+  <text x="250" y="195" font-family="Arial" font-size="12" text-anchor="middle">nacos.istio.mcp.server.enabled=true</text>
+  <text x="250" y="215" font-family="Arial" font-size="12" text-anchor="middle">nacos.k8s.sync.enabled=true</text>
+  
+  <!-- Istio Control Plane -->
+  <rect x="450" y="150" width="200" height="80" rx="8" ry="8" fill="#e6eeff" stroke="#0066cc" stroke-width="2"/>
+  <text x="550" y="175" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Istio 控制平面</text>
+  <text x="550" y="195" font-family="Arial" font-size="12" text-anchor="middle">istiod</text>
+  <text x="550" y="215" font-family="Arial" font-size="12" text-anchor="middle">Pilot / Galley</text>
+  
+  <!-- Java Container -->
+  <rect x="150" y="280" width="200" height="220" rx="8" ry="8" fill="#fff0e6" stroke="#ff9900" stroke-width="2"/>
+  <text x="250" y="300" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Java 服务容器</text>
+  
+  <!-- Java App -->
+  <rect x="170" y="320" width="160" height="60" rx="5" ry="5" fill="#ffe6cc" stroke="#ff6600" stroke-width="1"/>
+  <text x="250" y="345" font-family="Arial" font-size="14" text-anchor="middle">Java 应用</text>
+  <text x="250" y="365" font-family="Arial" font-size="12" text-anchor="middle">spring.application.name=service-provider</text>
+  
+  <!-- Nacos Client -->
+  <rect x="170" y="390" width="160" height="40" rx="5" ry="5" fill="#ccffcc" stroke="#00cc00" stroke-width="1"/>
+  <text x="250" y="415" font-family="Arial" font-size="14" text-anchor="middle">Nacos Client</text>
+  
+  <!-- Java Service Metadata -->
+  <rect x="170" y="440" width="160" height="40" rx="5" ry="5" fill="#ffffcc" stroke="#cccc00" stroke-width="1"/>
+  <text x="250" y="465" font-family="Arial" font-size="12" text-anchor="middle">元数据 (label/metadata)</text>
+  
+  <!-- Non-Java Container -->
+  <rect x="450" y="280" width="200" height="220" rx="8" ry="8" fill="#e6f0ff" stroke="#0066cc" stroke-width="2"/>
+  <text x="550" y="300" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">非Java服务容器</text>
+  
+  <!-- Python/Go App -->
+  <rect x="470" y="320" width="160" height="60" rx="5" ry="5" fill="#cce6ff" stroke="#0066cc" stroke-width="1"/>
+  <text x="550" y="345" font-family="Arial" font-size="14" text-anchor="middle">Python/Go 应用</text>
+  <text x="550" y="365" font-family="Arial" font-size="12" text-anchor="middle">使用HTTP协议</text>
+  
+  <!-- Istio Proxy -->
+  <rect x="470" y="390" width="160" height="40" rx="5" ry="5" fill="#ccddff" stroke="#0066cc" stroke-width="1"/>
+  <text x="550" y="415" font-family="Arial" font-size="14" text-anchor="middle">Istio Envoy Proxy</text>
+  
+  <!-- Python Service Metadata -->
+  <rect x="470" y="440" width="160" height="40" rx="5" ry="5" fill="#ffffcc" stroke="#cccc00" stroke-width="1"/>
+  <text x="550" y="465" font-family="Arial" font-size="12" text-anchor="middle">K8s 标签/注解</text>
+  
+  <!-- Integration Components Box -->
+  <rect x="130" y="530" width="540" height="70" rx="8" ry="8" fill="#f0f0f0" stroke="#999999" stroke-width="1"/>
+  <text x="400" y="550" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">集成组件</text>
+  
+  <!-- K8s Controller -->
+  <rect x="150" y="570" width="160" height="20" rx="4" ry="4" fill="#e6f9e6" stroke="#009900" stroke-width="1"/>
+  <text x="230" y="585" font-family="Arial" font-size="12" text-anchor="middle">K8s同步控制器</text>
+  
+  <!-- xDS Adapter -->
+  <rect x="320" y="570" width="160" height="20" rx="4" ry="4" fill="#e6eeff" stroke="#0066cc" stroke-width="1"/>
+  <text x="400" y="585" font-family="Arial" font-size="12" text-anchor="middle">xDS 协议适配器</text>
+  
+  <!-- MCP Bridge -->
+  <rect x="490" y="570" width="160" height="20" rx="4" ry="4" fill="#ffe6e6" stroke="#cc0066" stroke-width="1"/>
+  <text x="570" y="585" font-family="Arial" font-size="12" text-anchor="middle">MCP 协议桥接</text>
+  
+  <!-- Connection Lines -->
+  <!-- Nacos to Istio -->
+  <path d="M 350 190 L 450 190" fill="none" stroke="#ff6600" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="400" y="180" font-family="Arial" font-size="10" text-anchor="middle" fill="#ff6600">xDS/MCP 协议</text>
+  
+  <!-- Java App to Nacos -->
+  <path d="M 250 320 L 250 150" fill="none" stroke="#009900" stroke-width="2"/>
+  <text x="230" y="250" font-family="Arial" font-size="10" fill="#009900">服务注册发现</text>
+  
+  <!-- Python App to Istio -->
+  <path d="M 550 320 L 550 230" fill="none" stroke="#0066cc" stroke-width="2"/>
+  <text x="570" y="270" font-family="Arial" font-size="10" fill="#0066cc">服务注册发现</text>
+  
+  <!-- K8s to Nacos -->
+  <path d="M 190 570 L 190 230" fill="none" stroke="#009900" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="170" y="400" font-family="Arial" font-size="10" fill="#009900">K8s服务同步</text>
+  
+  <!-- Cross-Service Communication -->
+  <path d="M 310 350 L 470 350" fill="none" stroke="#666666" stroke-width="3"/>
+  <polygon points="465,345 475,350 465,355" fill="#666666"/>
+  <text x="390" y="340" font-family="Arial" font-size="10" text-anchor="middle">服务间调用</text>
+  
+  <!-- Legend -->
+  <rect x="130" y="620" width="540" height="40" rx="5" ry="5" fill="#f8f8f8" stroke="#999999" stroke-width="1"/>
+  <text x="400" y="635" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">图例</text>
+  
+  <line x1="155" y1="650" x2="175" y2="650" stroke="#009900" stroke-width="2"/>
+  <text x="205" y="653" font-family="Arial" font-size="10">Nacos数据流</text>
+  
+  <line x1="225" y1="650" x2="245" y2="650" stroke="#0066cc" stroke-width="2"/>
+  <text x="275" y="653" font-family="Arial" font-size="10">Istio数据流</text>
+  
+  <line x1="305" y1="650" x2="325" y2="650" stroke="#666666" stroke-width="2"/>
+  <text x="355" y="653" font-family="Arial" font-size="10">服务调用</text>
+  
+  <line x1="385" y1="650" x2="405" y2="650" stroke="#ff6600" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="445" y="653" font-family="Arial" font-size="10">协议转换</text>
+  
+  <line x1="485" y1="650" x2="505" y2="650" stroke="#009900" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="545" y="653" font-family="Arial" font-size="10">元数据同步</text>
+</svg>
