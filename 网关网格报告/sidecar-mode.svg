@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  <!-- 背景 -->
+  <rect width="1000" height="600" fill="#f8f9fa" />
+  
+  <!-- 节点A -->
+  <rect x="50" y="50" width="400" height="300" rx="10" fill="#e6f2ff" stroke="#0066cc" stroke-width="2" />
+  <text x="250" y="75" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">节点 A</text>
+  
+  <!-- 节点B -->
+  <rect x="550" y="50" width="400" height="300" rx="10" fill="#e6f2ff" stroke="#0066cc" stroke-width="2" />
+  <text x="750" y="75" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">节点 B</text>
+  
+  <!-- 控制平面 -->
+  <rect x="50" y="530" width="900" height="50" rx="10" fill="#e6ffe6" stroke="#006600" stroke-width="2" />
+  <text x="500" y="560" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Istio控制平面 (Istiod)</text>
+  
+  <!-- Pod A (调用方) -->
+  <rect x="100" y="120" width="300" height="180" rx="5" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="250" y="140" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Pod A</text>
+  
+  <!-- 服务A容器 -->
+  <rect x="120" y="160" width="140" height="120" rx="5" fill="#ffffff" stroke="#333333" stroke-width="1" />
+  <text x="190" y="220" font-family="Arial" font-size="14" text-anchor="middle">服务 A</text>
+  
+  <!-- Envoy Sidecar A -->
+  <rect x="280" y="160" width="100" height="120" rx="5" fill="#d1e7ff" stroke="#0066cc" stroke-width="1" />
+  <text x="330" y="210" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Envoy</text>
+  <text x="330" y="230" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Sidecar</text>
+  
+  <!-- Pod B (被调用方) -->
+  <rect x="600" y="120" width="300" height="180" rx="5" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="750" y="140" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Pod B</text>
+  
+  <!-- 服务B容器 -->
+  <rect x="740" y="160" width="140" height="120" rx="5" fill="#ffffff" stroke="#333333" stroke-width="1" />
+  <text x="810" y="220" font-family="Arial" font-size="14" text-anchor="middle">服务 B</text>
+  
+  <!-- Envoy Sidecar B -->
+  <rect x="620" y="160" width="100" height="120" rx="5" fill="#d1e7ff" stroke="#0066cc" stroke-width="1" />
+  <text x="670" y="210" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Envoy</text>
+  <text x="670" y="230" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Sidecar</text>
+  
+  <!-- 流量路径 -->
+  <!-- 1. 服务A到Sidecar A -->
+  <path d="M 260 220 L 280 220" fill="none" stroke="#ff6600" stroke-width="3" stroke-dasharray="none" />
+  <!-- 2. Sidecar A到Sidecar B -->
+  <path d="M 380 220 C 460 220, 540 220, 620 220" fill="none" stroke="#ff6600" stroke-width="3" stroke-dasharray="none" />
+  <!-- 3. Sidecar B到服务B -->
+  <path d="M 720 220 L 740 220" fill="none" stroke="#ff6600" stroke-width="3" stroke-dasharray="none" />
+  
+  <!-- 控制平面连接 -->
+  <path d="M 330 280 L 330 530" fill="none" stroke="#006600" stroke-width="1" stroke-dasharray="5,5" />
+  <path d="M 670 280 L 670 530" fill="none" stroke="#006600" stroke-width="1" stroke-dasharray="5,5" />
+  
+  <!-- 图例 -->
+  <rect x="800" y="520" width="20" height="10" fill="none" stroke="#ff6600" stroke-width="3" />
+  <text x="825" y="530" font-family="Arial" font-size="12" text-anchor="start">服务流量路径</text>
+  
+  <rect x="50" y="10" width="900" height="30" fill="none" />
+  <text x="500" y="30" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold">Istio Sidecar模式流量路径</text>
+  
+  <!-- 流程标注 -->
+  <circle cx="260" cy="200" r="12" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="260" y="205" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">1</text>
+  
+  <circle cx="330" cy="180" r="12" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="330" y="185" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">2</text>
+  
+  <circle cx="500" cy="200" r="12" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="500" y="205" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">3</text>
+  
+  <circle cx="670" cy="180" r="12" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="670" y="185" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">4</text>
+  
+  <circle cx="740" cy="200" r="12" fill="#ffffff" stroke="#333333" stroke-width="2" />
+  <text x="740" y="205" font-family="Arial" font-size="12" text-anchor="middle" font-weight="bold">5</text>
+  
+  <!-- 说明文本 -->
+  <text x="50" y="400" font-family="Arial" font-size="14">1. 服务A发起请求</text>
+  <text x="50" y="420" font-family="Arial" font-size="14">2. 流量被iptables规则拦截并重定向到本地Envoy Sidecar</text>
+  <text x="50" y="440" font-family="Arial" font-size="14">3. Sidecar A处理流量(路由、认证、指标收集等)并转发到目标Pod</text>
+  <text x="50" y="460" font-family="Arial" font-size="14">4. 目标Pod的Sidecar B接收流量并进行处理(策略检查、指标收集等)</text>
+  <text x="50" y="480" font-family="Arial" font-size="14">5. Sidecar B将请求转发给目标服务B</text>
+  
+  <!-- Sidecar注入过程说明 -->
+  <rect x="600" y="370" width="350" height="140" rx="5" fill="#f5f5f5" stroke="#333333" stroke-width="1" />
+  <text x="775" y="390" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Sidecar注入过程</text>
+  <text x="610" y="410" font-family="Arial" font-size="12">1. Pod创建时，Istio准入控制器(MutatingWebhook)拦截请求</text>
+  <text x="610" y="430" font-family="Arial" font-size="12">2. 控制器修改Pod规格，注入Envoy Sidecar容器</text>
+  <text x="610" y="450" font-family="Arial" font-size="12">3. 同时注入init容器配置iptables规则重定向流量</text>
+  <text x="610" y="470" font-family="Arial" font-size="12">4. Pod启动后，Sidecar自动连接Istiod获取配置</text>
+  <text x="610" y="490" font-family="Arial" font-size="12">5. Istiod持续将配置更新推送给所有Sidecar</text>
+  
+  <!-- 额外特性说明 -->
+  <text x="400" y="350" font-family="Arial" font-size="14" font-weight="bold">流量管理特性:</text>
+  <text x="400" y="370" font-family="Arial" font-size="12">• 7层负载均衡</text>
+  <text x="400" y="390" font-family="Arial" font-size="12">• 动态路由配置</text>
+  <text x="400" y="410" font-family="Arial" font-size="12">• 金丝雀/A-B测试</text>
+  <text x="400" y="430" font-family="Arial" font-size="12">• 熔断和故障注入</text>
+  <text x="400" y="450" font-family="Arial" font-size="12">• 流量镜像</text>
+  <text x="400" y="470" font-family="Arial" font-size="12">• 请求超时和重试</text>
+</svg>
