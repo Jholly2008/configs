@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850">
+  <!-- 背景 -->
+  <rect width="1200" height="750" fill="#f8f9fa" />
+  
+  <!-- Kubernetes集群边界 -->
+  <rect x="20" y="140" width="1130" height="470" rx="10" fill="none" stroke="#666666" stroke-width="2" stroke-dasharray="10,5" />
+  <text x="70" y="165" font-family="Arial" font-size="14" text-anchor="start" fill="#666666">Kubernetes集群 (10.96.0.0/16网段)</text>
+  
+  <!-- 第一行：客户端 - Nginx - K8s Service -->
+  <rect x="50" y="30" width="120" height="60" rx="8" fill="#e6e6e6" stroke="#323232" stroke-width="2" />
+  <text x="110" y="65" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">客户端</text>
+  
+  <path d="M 170 60 L 250 60" fill="none" stroke="#323232" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="210" y="50" font-family="Arial" font-size="12" text-anchor="middle">请求</text>
+  
+  <rect x="250" y="30" width="120" height="60" rx="8" fill="#d1e7f0" stroke="#323232" stroke-width="2" />
+  <text x="310" y="55" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Nginx</text>
+  <text x="310" y="75" font-family="Arial" font-size="12" text-anchor="middle">Ingress</text>
+  
+  <path d="M 370 60 L 450 60" fill="none" stroke="#323232" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="410" y="50" font-family="Arial" font-size="12" text-anchor="middle">转发</text>
+  
+  <rect x="450" y="30" width="120" height="60" rx="8" fill="#e9e2f1" stroke="#323232" stroke-width="2" />
+  <text x="510" y="55" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Kubernetes</text>
+  <text x="510" y="75" font-family="Arial" font-size="12" text-anchor="middle">Service</text>
+  
+  <!-- 请求URL和Headers注释 -->
+  <text x="110" y="110" font-family="Arial" font-size="11" text-anchor="middle" fill="#666666">Authorization: Bearer ukdn830dj</text>
+  <text x="310" y="110" font-family="Arial" font-size="11" text-anchor="middle" fill="#666666">https://api-gateway-test.digiwincloud.com.cn/XX</text>
+  <text x="510" y="110" font-family="Arial" font-size="11" text-anchor="middle" fill="#666666">service.api-gateway.svc.cluster.local:19078</text>
+  
+  <!-- API网关区域 -->
+  <rect x="200" y="180" width="500" height="160" rx="10" fill="#fff0e6" stroke="#d35400" stroke-width="2" />
+  <text x="450" y="205" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">API 网关 (10.96.0.1)</text>
+  
+  <!-- 网关内部组件 -->
+  <rect x="220" y="225" width="140" height="90" rx="5" fill="#ffffff" stroke="#d35400" stroke-width="2" />
+  <text x="290" y="260" font-family="Arial" font-size="14" text-anchor="middle">路由策略匹配</text>
+  <text x="290" y="285" font-family="Arial" font-size="11" text-anchor="middle">根据租户ID匹配</text>
+  <text x="290" y="300" font-family="Arial" font-size="10" text-anchor="middle">service-a/b/c: version-1</text>
+  
+  <rect x="380" y="225" width="140" height="90" rx="5" fill="#ffffff" stroke="#d35400" stroke-width="2" />
+  <text x="450" y="260" font-family="Arial" font-size="14" text-anchor="middle">流量染色</text>
+  <text x="450" y="285" font-family="Arial" font-size="11" text-anchor="middle">X-Service-Version:</text>
+  <text x="450" y="300" font-family="Arial" font-size="10" text-anchor="middle">{"service-b": "1", "service-a": "1"}</text>
+  
+  <rect x="540" y="225" width="140" height="90" rx="5" fill="#ffffff" stroke="#d35400" stroke-width="2" />
+  <text x="610" y="260" font-family="Arial" font-size="14" text-anchor="middle">Envoy Sidecar</text>
+  <text x="610" y="285" font-family="Arial" font-size="11" text-anchor="middle">Service Mesh 代理</text>
+  <text x="610" y="300" font-family="Arial" font-size="10" text-anchor="middle">根据X-Service-Version路由</text>
+  
+  <!-- Nacos服务注册中心 -->
+  <rect x="400" y="620" width="200" height="80" rx="8" fill="#e6f9ff" stroke="#00a0c6" stroke-width="2" />
+  <text x="500" y="655" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Nacos 服务注册中心</text>
+  <text x="500" y="680" font-family="Arial" font-size="12" text-anchor="middle">服务注册、配置中心</text>
+  
+  <!-- Istiod -->
+  <rect x="650" y="620" width="200" height="80" rx="8" fill="#e6ffe6" stroke="#006600" stroke-width="2" />
+  <text x="750" y="655" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Istiod</text>
+  <text x="750" y="680" font-family="Arial" font-size="12" text-anchor="middle">服务网格控制平面</text>
+  
+  <!-- 服务A区域 (Java) -->
+  <rect x="50" y="380" width="300" height="220" rx="10" fill="#f5f0ff" stroke="#6c3483" stroke-width="2" />
+  <text x="200" y="405" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Pod A: Java应用 (10.96.0.11)</text>
+  <text x="200" y="430" font-family="Arial" font-size="12" text-anchor="middle">Service-a (version-1)</text>
+  
+  <!-- Java应用内部组件 -->
+  <rect x="70" y="445" width="120" height="70" rx="5" fill="#ffffff" stroke="#6c3483" stroke-width="2" />
+  <text x="130" y="475" font-family="Arial" font-size="14" text-anchor="middle">业务逻辑</text>
+  <text x="130" y="495" font-family="Arial" font-size="11" text-anchor="middle">Service-a</text>
+  
+  <rect x="70" y="530" width="120" height="50" rx="5" fill="#e6f9ff" stroke="#00a0c6" stroke-width="2" />
+  <text x="130" y="555" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Nacos Client</text>
+  <text x="130" y="573" font-family="Arial" font-size="10" text-anchor="middle">负责服务发现和路由决策</text>
+  
+  <rect x="210" y="445" width="120" height="135" rx="5" fill="#eaeaea" stroke="#0066cc" stroke-width="2" />
+  <text x="270" y="475" font-family="Arial" font-size="14" text-anchor="middle">Envoy Sidecar</text>
+  <text x="270" y="500" font-family="Arial" font-size="11" text-anchor="middle">负责非路由功能</text>
+  <text x="270" y="520" font-family="Arial" font-size="11" text-anchor="middle">- 流量监控</text>
+  <text x="270" y="540" font-family="Arial" font-size="11" text-anchor="middle">- 安全策略</text>
+  <text x="270" y="560" font-family="Arial" font-size="11" text-anchor="middle">- 链路追踪</text>
+  
+  <!-- 服务B区域 (Python) -->
+  <rect x="400" y="380" width="300" height="220" rx="10" fill="#ebf5e8" stroke="#27ae60" stroke-width="2" />
+  <text x="550" y="405" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Pod B: Python应用 (10.96.0.21)</text>
+  <text x="550" y="430" font-family="Arial" font-size="12" text-anchor="middle">Service-b (version-1)</text>
+  
+  <!-- Python应用内部组件 -->
+  <rect x="420" y="445" width="120" height="125" rx="5" fill="#ffffff" stroke="#27ae60" stroke-width="2" />
+  <text x="480" y="490" font-family="Arial" font-size="14" text-anchor="middle">业务逻辑</text>
+  <text x="480" y="515" font-family="Arial" font-size="11" text-anchor="middle">Service-b</text>
+  
+  <rect x="560" y="445" width="120" height="125" rx="5" fill="#eaeaea" stroke="#0066cc" stroke-width="2" />
+  <text x="620" y="475" font-family="Arial" font-size="14" text-anchor="middle">Envoy Sidecar</text>
+  <text x="620" y="500" font-family="Arial" font-size="11" text-anchor="middle">拦截出站流量</text>
+  <text x="620" y="520" font-family="Arial" font-size="11" text-anchor="middle">根据X-Service-</text>
+  <text x="620" y="540" font-family="Arial" font-size="11" text-anchor="middle">Version负载C</text>
+  <text x="620" y="560" font-family="Arial" font-size="11" text-anchor="middle">得到10.96.0.31</text>
+  
+  <!-- 服务C区域 (Go) -->
+  <rect x="750" y="380" width="300" height="220" rx="10" fill="#e6f7ff" stroke="#0078d7" stroke-width="2" />
+  <text x="900" y="405" font-family="Arial" font-size="16" text-anchor="middle" font-weight="bold">Pod C: Go应用 (10.96.0.31)</text>
+  <text x="900" y="430" font-family="Arial" font-size="12" text-anchor="middle">Service-c (version-1)</text>
+  
+  <!-- Go应用内部组件 -->
+  <rect x="770" y="445" width="120" height="70" rx="5" fill="#ffffff" stroke="#0078d7" stroke-width="2" />
+  <text x="830" y="475" font-family="Arial" font-size="14" text-anchor="middle">业务逻辑</text>
+  <text x="830" y="495" font-family="Arial" font-size="11" text-anchor="middle">Service-c</text>
+  
+  <rect x="910" y="445" width="120" height="125" rx="5" fill="#eaeaea" stroke="#0066cc" stroke-width="2" />
+  <text x="970" y="475" font-family="Arial" font-size="14" text-anchor="middle">Envoy Sidecar</text>
+  <text x="970" y="500" font-family="Arial" font-size="11" text-anchor="middle">拦截入站流量</text>
+  <text x="970" y="520" font-family="Arial" font-size="11" text-anchor="middle">处理请求</text>
+  
+  <!-- 流量路径箭头 -->
+  <!-- 入口到API网关 -->
+  <path d="M 510 90 L 450 177" fill="none" stroke="#323232" stroke-width="2" marker-end="url(#arrow)" />
+  
+  <!-- API网关到Java服务 -->
+  <path d="M 450 340 L 200 380" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="325" y="360" font-family="Arial" font-size="13" text-anchor="middle" fill="#d35400">1. 调用Service-a</text>
+  
+  <!-- Java服务(通过Nacos Client)到Python服务 -->
+  <path d="M 190 555 L 290 555 L 370 555 L 420 510" fill="none" stroke="#6c3483" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="310" y="540" font-family="Arial" font-size="13" text-anchor="middle" fill="#6c3483">2. Nacos Client路由后调用Service-b</text>
+  
+  <!-- Python服务到Go服务 -->
+  <path d="M 700 480 L 770 480" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arrow)" />
+  <text x="735" y="465" font-family="Arial" font-size="13" text-anchor="middle" fill="#27ae60">3. 调用Service-c</text>
+  
+  <!-- 服务注册路径 -->
+  <path d="M 200 600 L 200 660 L 397 660" fill="none" stroke="#00a0c6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  <text x="235" y="640" font-family="Arial" font-size="12" text-anchor="middle" fill="#00a0c6">服务注册</text>
+  
+  <!-- Pod C注册到Istiod -->
+  <path d="M 900 600 L 900 660 L 853 660" fill="none" stroke="#006600" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  <text x="900" y="640" font-family="Arial" font-size="12" text-anchor="middle" fill="#006600">服务注册</text>
+  
+  <!-- Istiod控制路径 -->
+  <path d="M 270 445 L 270 350 L 750 350 L 750 617" fill="none" stroke="#006600" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  <text x="500" y="335" font-family="Arial" font-size="12" text-anchor="middle" fill="#006600">Envoy订阅服务变更</text>
+  
+  <path d="M 620 445 L 620 380 L 750 380 L 750 617" fill="none" stroke="#006600" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  
+  <path d="M 970 445 L 970 380 L 750 380 L 750 617" fill="none" stroke="#006600" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  
+  <!-- Nacos与Istio双向同步 -->
+  <path d="M 603 660 L 647 660" fill="none" stroke="#323232" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow)" />
+  <text x="625" y="645" font-family="Arial" font-size="12" text-anchor="middle">XDS双向同步</text>
+  
+  <!-- 定义箭头标记 -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#323232" />
+    </marker>
+  </defs>
+  
+  <!-- 流量染色装饰器 -->
+  <rect x="120" y="710" width="960" height="30" rx="5" fill="#f0f0f0" stroke="#666666" stroke-width="1" />
+  <text x="600" y="730" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">API网关染色 → Java应用使用Nacos Client路由 → Python应用Envoy路由到Go服务</text>
+  
+  <!-- 图例 -->
+  <rect x="130" y="750" width="15" height="10" fill="none" stroke="#d35400" stroke-width="2" />
+  <text x="150" y="760" font-family="Arial" font-size="10" text-anchor="start">API网关流量</text>
+  
+  <rect x="240" y="750" width="15" height="10" fill="none" stroke="#6c3483" stroke-width="2" />
+  <text x="260" y="760" font-family="Arial" font-size="10" text-anchor="start">Service-a流量</text>
+  
+  <rect x="350" y="750" width="15" height="10" fill="none" stroke="#27ae60" stroke-width="2" />
+  <text x="370" y="760" font-family="Arial" font-size="10" text-anchor="start">Service-b流量</text>
+  
+  <rect x="460" y="750" width="15" height="10" fill="none" stroke="#00a0c6" stroke-width="2" stroke-dasharray="5,3" />
+  <text x="480" y="760" font-family="Arial" font-size="10" text-anchor="start">Nacos服务注册</text>
+  
+  <rect x="570" y="750" width="15" height="10" fill="none" stroke="#006600" stroke-width="2" stroke-dasharray="5,3" />
+  <text x="590" y="760" font-family="Arial" font-size="10" text-anchor="start">Istio服务注册与控制</text>
+</svg>
